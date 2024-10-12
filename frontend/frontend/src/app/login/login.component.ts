@@ -19,6 +19,15 @@ export class LoginComponent {
     // Redirect to the login page
     window.location.assign(url);
   }
+
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
+  goToAboutUs() {
+    // Navigate to About Us page (assuming you have an About Us route)
+    this.router.navigate(['/about']);
+  }
 }
 
 
