@@ -33,7 +33,7 @@ export class CallbackComponent implements OnInit {
           .then(response => {
               //console.log('Token response:', response);
               console.log('Is platform browser:', isPlatformBrowser(this.platformId));
-              console.log('response:', response);
+              //console.log('response:', response);
   
               // Use the localStorage defined in the constructor
               const localStorage = this.document.defaultView?.localStorage;
@@ -55,36 +55,3 @@ export class CallbackComponent implements OnInit {
   }
 
 }
-  
-
-  /* getToken(code: string) {
-    const body = new HttpParams()
-      .set('grant_type', 'authorization_code')
-      .set('code', code)
-      .set('redirect_uri', this.redirectUri);
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': environment.clientSecret
-    });
-
-    this.http.post(this.tokenUrl, body.toString(), { headers })
-      .subscribe(
-        (response: any) => {
-          console.log('Token response:', response);
-
-          if (typeof window !== 'undefined' && window.localStorage) {
-            localStorage.setItem('access_token', response.access_token); 
-          } else {
-            console.warn('localStorage is not available. Token cannot be saved.');
-          }
-
-          this.router.navigate(['/']);
-        },
-        (error) => {
-          console.error('Error fetching token:', error);
-          this.router.navigate(['/']);
-        }
-      );
-  } */
-
