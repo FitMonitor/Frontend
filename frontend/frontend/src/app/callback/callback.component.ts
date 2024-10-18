@@ -1,4 +1,4 @@
-import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment'; // Import environment variables
 import { ApiService } from '../service/api.service';
@@ -7,39 +7,40 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-callback',
   standalone: true,
-  imports: [],
   template: '<p>Processing login...</p>',
 })
 export class CallbackComponent implements OnInit {
   private tokenUrl = environment.tokenUrl;
   private redirectUri = environment.redirectUri;
-  ApiService = inject(ApiService);
+  private isTokenFetched = false; // Flag to prevent double API call
+  private token: string = '';
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
+    private apiService: ApiService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
   ) {
-    const localStorage = document.defaultView?.localStorage;
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const code = params['code']; 
-      if (code) {
+      if (code && !this.isTokenFetched) { // Check the flag to prevent multiple calls
         console.log('Received code:', code);
-        this.ApiService.gettoken(code)
+        this.isTokenFetched = true; // Set flag to true to prevent multiple API calls
+
+        this.apiService.gettoken(code)
           .then(response => {
-              //console.log('Token response:', response);
+            console.log('response:', response);
+              this.token = response.access_token; // Replace response.token with the correct property
               console.log('Is platform browser:', isPlatformBrowser(this.platformId));
-              //console.log('response:', response);
-  
-              // Use the localStorage defined in the constructor
               const localStorage = this.document.defaultView?.localStorage;
               if (localStorage) {
-                //localStorage.setItem('token', response.token); // Replace response.token with the correct property
+                localStorage.setItem('token', this.token); // Replace response.token with the correct property
                 console.log('Token saved in localStorage');
+                console.log('Token:', this.token);
               } else {
                 console.warn('localStorage is not available. Token cannot be saved.');
               }
@@ -47,11 +48,11 @@ export class CallbackComponent implements OnInit {
           .catch(error => {
               console.error('Error during token retrieval:', error);
           });
-      } else {
+      } else if (!code) {
         console.error('No code found in redirect');
         this.router.navigate(['/']);
       }
     });
+    
   }
-
 }

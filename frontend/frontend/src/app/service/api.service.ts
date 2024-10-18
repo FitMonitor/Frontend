@@ -14,7 +14,7 @@ export class ApiService {
     const url = `http://localhost:8080/api/token/get?code=${code}`;
 
     const headers = new Headers({
-      'Content-Type': 'application/json', // The server expects a GET request, so content type is not necessary, but you can adjust this.
+      'Content-Type': 'text/plain',
     });
 
     // Make the GET request
@@ -24,7 +24,7 @@ export class ApiService {
     });
 
     const data = await response.json();
-    console.log('Token:', data.access_token);
+    console.log('Token:', data.id_token);
     
     return data;
   }
