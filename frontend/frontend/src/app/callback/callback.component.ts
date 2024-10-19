@@ -14,6 +14,7 @@ export class CallbackComponent implements OnInit {
   private redirectUri = environment.redirectUri;
   private isTokenFetched = false; // Flag to prevent double API call
   private token: string = '';
+  private roles: string[] = [];
 
   constructor(
     private route: ActivatedRoute, 
@@ -34,20 +35,28 @@ export class CallbackComponent implements OnInit {
         this.apiService.gettoken(code)
           .then(response => {
             console.log('response:', response);
-              this.token = response.access_token; // Replace response.token with the correct property
-              console.log('Is platform browser:', isPlatformBrowser(this.platformId));
-              const localStorage = this.document.defaultView?.localStorage;
-              if (localStorage) {
-                localStorage.setItem('token', this.token); // Replace response.token with the correct property
-                console.log('Token saved in localStorage');
-                console.log('Token:', this.token);
-              } else {
-                console.warn('localStorage is not available. Token cannot be saved.');
-              }
+
+            this.roles = response.roles;
+            console.log('Roles:', this.roles);
+            // Parse the token string into a JSON object
+            const tokenObject = JSON.parse(response.token);
+
+            this.token = tokenObject.id_token; // Use the parsed token object
+            console.log('Is platform browser:', isPlatformBrowser(this.platformId));
+            
+            const localStorage = this.document.defaultView?.localStorage;
+            if (localStorage) {
+              localStorage.setItem('token', this.token); // Save the id_token
+              console.log('Token saved in localStorage');
+              console.log('Token:', this.token);
+            } else {
+              console.warn('localStorage is not available. Token cannot be saved.');
+            }
           })
           .catch(error => {
-              console.error('Error during token retrieval:', error);
+            console.error('Error during token retrieval:', error);
           });
+
       } else if (!code) {
         console.error('No code found in redirect');
         this.router.navigate(['/']);
