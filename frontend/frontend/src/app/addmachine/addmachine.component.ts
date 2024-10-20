@@ -45,6 +45,15 @@ export class AddMachineComponent implements OnInit {
     this.showModal = !this.showModal;
   }
 
+  async deleteMachine():Promise<void> {
+    //implement later
+  }
+
+  async editMachine():Promise<void> {
+    //implement later
+  }
+
+
   async onSubmit(): Promise<void> {
     if (this.machineForm.valid) {
       const newMachine: Machine = this.machineForm.value;

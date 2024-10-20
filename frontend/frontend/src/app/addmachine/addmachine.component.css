@@ -22,16 +22,6 @@ button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Modal styling */
-div > div {
-  background-color: #f8f9fa; /* Light gray background */
-  border: 1px solid #ced4da; /* Gray border */
-  border-radius: 5px; /* Rounded corners */
-
-
-  margin-top: 15px; /* Space above the modal */
-}
-
 /* Form label styling */
 label {
   display: block; /* Block display for labels */
@@ -52,155 +42,81 @@ input:focus, textarea:focus {
   border-color: #007bff; /* Change border color on focus */
 }
 
-article {
-  --img-scale: 1.001;
-  --title-color: black;
-  --link-icon-translate: -20px;
-  --link-icon-opacity: 0;
-  position: relative;
-  border-radius: 16px;
-  box-shadow: none;
-  background: #fff;
-  transform-origin: center;
-  transition: all 0.4s ease-in-out;
-  overflow: hidden;
-}
 
-article a::after {
-  position: absolute;
-  inset-block: 0;
-  inset-inline: 0;
-  cursor: pointer;
-  content: "";
-}
-
-/* basic article elements styling */
-article h2 {
-  margin: 0 0 18px 0;
-  font-family: "Bebas Neue", cursive;
-  font-size: 1.9rem;
-  letter-spacing: 0.06em;
-  color: var(--title-color);
-  transition: color 0.3s ease-out;
-}
-
-figure {
-  margin: 0;
-  padding: 0;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-article img {
-  max-width: 100%;
-  transform-origin: center;
-  transform: scale(var(--img-scale));
-  transition: transform 0.4s ease-in-out;
-}
-
-.article-body {
-  padding: 24px;
-}
-
-article a {
-  display: inline-flex;
+.card {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  text-decoration: none;
-  color: #28666e;
-}
-
-article a:focus {
-  outline: 1px dotted #28666e;
-}
-
-article a .icon {
-  min-width: 24px;
-  width: 24px;
-  height: 24px;
-  margin-left: 5px;
-  transform: translateX(var(--link-icon-translate));
-  opacity: var(--link-icon-opacity);
-  transition: all 0.3s;
-}
-
-/* using the has() relational pseudo selector to update our custom properties */
-article:has(:hover, :focus) {
-  --img-scale: 1.1;
-  --title-color: #28666e;
-  --link-icon-translate: 0;
-  --link-icon-opacity: 1;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
-
-
-/************************
-Generic layout (demo looks)
-**************************/
-
-*,
-*::before,
-*::after {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px auto;
   box-sizing: border-box;
 }
 
-body {
+.card-content {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
   margin: 0;
-  padding: 48px 0;
-  font-family: "Figtree", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
-  background-image: linear-gradient(45deg, #7c9885, #b5b682);
-  min-height: 100vh;
 }
 
-.articles {
-  display: grid;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 0px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
+.card-description {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
 }
 
-@media screen and (max-width: 960px) {
-  article {
-    container: card/inline-size;
-  }
-  .article-body p {
-    display: none;
-  }
+.card-buttons {
+  display: flex;
+  gap: 10px;
 }
 
-@container card (min-width: 380px) {
-  .article-wrapper {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 0px;
+.card-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .article-body {
-    padding-left: 0;
+
+  .card-content {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-  figure {
+
+  .card-buttons {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    justify-content: flex-end;
   }
-  figure img {
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
+
+  .card-buttons button {
+    flex: 1;
   }
 }
 
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
 
 .modal {
   display: flex; /* Use flexbox to center the modal */
@@ -214,7 +130,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for the overlay */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  margin-left: 500px;
+  margin-left: 600px;
 }
 
 .modal-content {
@@ -227,14 +143,6 @@ body {
   padding: 20px; /* Add padding for the content */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
   overflow: hidden; /* Prevent overflow */
-}
-
-.close {
-  color: #aaa; /* Close button color */
-  float: right; /* Float the close button to the right */
-  font-size: 28px; /* Size of the close button */
-  font-weight: bold; /* Bold close button */
-  cursor: pointer; /* Change cursor to pointer */
 }
 
 /* Media Queries */
