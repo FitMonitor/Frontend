@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MachineService } from './machine.service';
+import {MatDialog} from "@angular/material/dialog";
+import {AddmachinemodalComponent} from "../addmachinemodal/addmachinemodal.component";
 
 interface Machine {
   id?: number;
@@ -23,17 +25,12 @@ export class AddMachineComponent implements OnInit {
   machines: Machine[] = [];
   showModal: boolean = false;
 
-  machineService = inject(MachineService);
   fb = inject(FormBuilder);
 
-  ngOnInit(): void {
-    this.machineForm = this.fb.group({
-      name: ['', [Validators.required]],
-      available: [true, Validators.required],
-      description: ['', [Validators.required]],
-    });
+  constructor(private dialog: MatDialog,private machineService:MachineService) {}
 
-    this.loadMachines(); // Load existing machines from the API
+  ngOnInit(): void {
+    this.loadMachines();
   }
 
   async loadMachines(): Promise<void> {
@@ -41,31 +38,24 @@ export class AddMachineComponent implements OnInit {
     this.machines = data ?? [];
   }
 
-  toggleModal(): void {
-    this.showModal = !this.showModal;
-  }
+  openModal() {
+    const dialogRef = this.dialog.open(AddmachinemodalComponent, {
+      width: '400px'
+    });
 
-  async deleteMachine():Promise<void> {
-    //implement later
-  }
-
-  async editMachine():Promise<void> {
-    //implement later
-  }
-
-
-  async onSubmit(): Promise<void> {
-    if (this.machineForm.valid) {
-      const newMachine: Machine = this.machineForm.value;
-      const response = await this.machineService.createMachine(newMachine);
-      if (response) {
-        this.machines.push(response);
-        this.showModal = false;
-        this.machineForm.reset();
-        this.machineForm.patchValue({ available: true }); // Reset available to true
-      } else {
-        console.error('Error creating machine:', response);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadMachines();
       }
-    }
+    });
   }
+
+  editMachine(){
+    //implement edit machine
+  }
+
+  deleteMachine(){
+    //implement delete machine
+  }
+
 }

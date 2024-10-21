@@ -7,6 +7,10 @@ export class MachineService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
+  isPlatformBrowser() {
+    return isPlatformBrowser(this.platformId);
+  }
+
   async getMachines() {
     const url = `${this.baseUrl}/all`;
     const response = await fetch(url, {

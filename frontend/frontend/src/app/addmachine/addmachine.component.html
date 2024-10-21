@@ -1,31 +1,5 @@
 <div>
-  <button (click)="toggleModal()">Add Machine</button>
-
-  <!-- Modal Overlay -->
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-content">
-      <form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
-        <label>
-          Name:
-          <input formControlName="name" required />
-        </label>
-        <label>
-          Description:
-          <input formControlName="description" required />
-        </label>
-        <div>
-          <label>
-            <input type="radio" formControlName="available" [value]="true" /> Available
-          </label>
-          <label>
-            <input type="radio" formControlName="available" [value]="false" /> Not Available
-          </label>
-        </div>
-        <button type="submit">Create Machine</button>
-        <button type="button" (click)="toggleModal()">Cancel</button>
-      </form>
-    </div>
-  </div>
+  <button (click)="openModal()">Add Machine</button>
 
   <h2>Machines List</h2>
   <div class="machines-list" *ngFor="let machine of machines">
@@ -35,7 +9,7 @@
         <p class="card-description">{{machine.description}}</p>
       </div>
       <div class="card-buttons">
-        <button class="edit-btn" (click)="editMachine">Edit</button>
+        <button class="edit-btn" (click)="editMachine()">Edit</button>
         <button class="delete-btn" (click)="deleteMachine()">Delete</button>
       </div>
     </div>
