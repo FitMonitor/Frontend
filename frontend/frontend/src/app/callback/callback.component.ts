@@ -14,6 +14,7 @@ export class CallbackComponent implements OnInit {
       const code = params['code']; // Get the authorization code from the query params
       if (code) {
         console.log('Received code:', code);
+        this.router.navigate(['/user-dashboard']);
         
       } else {
         // Handle error or redirect if code is missing
