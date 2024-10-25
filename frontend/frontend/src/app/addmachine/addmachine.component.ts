@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { MachineService } from './machine.service';
 import {MatDialog} from "@angular/material/dialog";
 import {AddmachinemodalComponent} from "../addmachinemodal/addmachinemodal.component";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatAnchor, MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 interface Machine {
   id?: number;
@@ -16,7 +19,7 @@ interface Machine {
 @Component({
   selector: 'app-add-machine',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatToolbar, MatButton, RouterLink, MatAnchor],
   templateUrl: './addmachine.component.html',
   styleUrls: ['./addmachine.component.css']
 })

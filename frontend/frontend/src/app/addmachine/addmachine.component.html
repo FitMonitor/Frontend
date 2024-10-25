@@ -1,18 +1,23 @@
-<div>
-  <button (click)="openModal()">Add Machine</button>
+<mat-toolbar class="custom-toolbar">
+  <a mat-button routerLink="/add-machine" class="nav-link">Add Machine</a>
+  <a mat-button routerLink="/another-page" class="nav-link">Another Page</a>
+</mat-toolbar>
 
-  <h2>Machines List</h2>
+<div>
+  <!-- Flex container for the title and button -->
+  <div class="header-row">
+    <h2>Machines List</h2>
+    <button (click)="openModal()">Add Machine</button>
+  </div>
+
+  <!-- List of machines -->
   <div class="machines-list" *ngFor="let machine of machines">
     <div class="card">
       <div class="card-content">
-        <p class="card-title">{{machine.name}}</p>
-        <p class="card-description">{{machine.description}}</p>
-      </div>
-      <div class="card-buttons">
-        <button class="edit-btn" (click)="editMachine()">Edit</button>
-        <button class="delete-btn" (click)="deleteMachine()">Delete</button>
+        <p class="card-title">{{ machine.name }}</p>
+        <p class="card-description">{{ machine.description }}</p>
       </div>
     </div>
-
   </div>
 </div>
+

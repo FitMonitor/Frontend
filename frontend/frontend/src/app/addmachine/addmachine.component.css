@@ -153,3 +153,39 @@ input:focus, textarea:focus {
   }
 }
 
+/* styles.css */
+.custom-toolbar {
+  background-color: grey; /* Set to the desired grey shade */
+  color: white;           /* Optional: Adjust text color for readability */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 0 15px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* styles.css */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.header-row h2 {
+  margin: 0;
+}
+
+.header-row button {
+  /* Optional: Add some styling to the button */
+  padding: 5px 10px;
+}
+
+
+
