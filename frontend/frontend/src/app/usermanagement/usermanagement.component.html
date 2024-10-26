@@ -1,0 +1,20 @@
+<div class="user-list">
+    <h2>User Management</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Sub</th>
+          <th>Email</th>
+          <th>Groups</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.sub }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.groups?.join(', ') || 'No Roles' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
