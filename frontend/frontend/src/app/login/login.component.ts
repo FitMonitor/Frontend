@@ -19,13 +19,13 @@ export class LoginComponent {
     // Redirect to the login page
     window.location.assign(url);
   }
+
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
+  goToAboutUs() {
+    // Navigate to About Us page (assuming you have an About Us route)
+    this.router.navigate(['/about']);
+  }
 }
-
-
-/* curl --location --request POST 'https://identity-server.auth.eu-north-1.amazoncognito.com/oauth2/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Authorization: Basic NGRydnRndm12N2t2azQ2NWN0Y2t0cDZlNGY6MTYxNjZldGs3ZHQ2YjVvYjJnYmd1MjNrdGlvdjFjdXR0MHZnZ3NsanVtajBtaWRrbTEyYw==' \
---data-urlencode 'grant_type=authorization_code' \
---data-urlencode 'code=66eb7c55-66aa-43ad-91b8-4d8a0b77eca3' \
---data-urlencode 'redirect_uri=http://localhost:4200/callback'
- */

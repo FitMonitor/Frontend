@@ -1,4 +1,37 @@
-<p>login works!</p>
-<p>Login works!</p>
-<h1>Welcome to the Home Page!</h1>
-<button (click)="onButtonClick()">Go to Login Page</button>
+<nav class="navbar">
+  <div class="navbar-left">
+    <span class="navbar-brand">FitMonitor</span>
+  </div>
+
+
+
+  <div class="navbar-right">
+    <a href="#" (click)="goToHome()">Home</a>
+    <a href="#" (click)="goToAboutUs()">About Us</a>
+    <a href="#" (click)="onButtonClick()">Log In / Sign Up</a>
+  </div>
+</nav>
+
+<!-- Image Section -->
+<div class="image-container">
+  <img src="https://c1.wallpaperflare.com/preview/234/625/249/various-fit-fitness-gym.jpg" alt="Background Image" class="background-image">
+  <div class="overlay-content">
+    <h1 class="overlay-text">OPTIMIZE YOUR WORKOUT ANYTIME AND ANYWHERE!</h1>
+
+    <!-- Card with text on the left and image on the right -->
+    <div class="info-card">
+      <div class="card-content">
+        <div class="card-image">
+          <img src="https://img.freepik.com/free-photo/3d-gym-equipment_23-2151114163.jpg" alt="Card Image">
+        </div>
+        <div class="card-text">
+          <h2>Are you ready to get in shape?</h2>
+          <p>Our app revolutionizes your gym experiences by providing real-time updates on gym occupancy and machine availability.</p>
+          <button (click)="onButtonClick()">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
