@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from '../../environments/environment'; // Import environment variables
 import { ApiService } from '../service/api.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
@@ -10,8 +9,6 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   template: '<p>Processing login...</p>',
 })
 export class CallbackComponent implements OnInit {
-  private tokenUrl = environment.tokenUrl;
-  private redirectUri = environment.redirectUri;
   private isTokenFetched = false; // Flag to prevent double API call
   private token: string = '';
   private roles: string[] = [];

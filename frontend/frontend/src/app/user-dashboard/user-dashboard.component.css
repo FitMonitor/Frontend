@@ -1,0 +1,48 @@
+    /* Seção Hero */
+    .hero-section {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Seção CTA */
+    .cta-section {
+        background-color: #f8f9fa;
+    }
+
+    .cta-section img {
+        border-radius: 10px;
+    }
+
+    /* Botões personalizados */
+    .btn-danger {
+        background-color: #ff0000;
+        border-color: #ff0000;
+    }
+
+    .btn-danger:hover {
+        background-color: #ffffff;
+        color: #ff0000;
+        border-color: #ff0000;
+    }
+
+    .btn-outline-danger {
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #ff0000;
+        color: #fff;
+    }
+
+    .card-custom {
+        border-top: 5px solid #ff0000;
+    }
+
+    .icon-container {
+        margin-bottom: 15px;
+    }
+    
