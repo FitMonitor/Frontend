@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/Logo.svg" alt="Fit Monitor Logo" width="70" height="70" class="me-2">FIT Monitor
+        </a>
+
+        <!-- Botão de menu (hamburger) para mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Elementos da Navbar: Search bar e links -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <!-- Barra de pesquisa centralizada -->
+            <form class="d-flex mx-auto" style="max-width: 500px;">
+                <input type="text" class="form-control rounded-pill" placeholder="Search here..." aria-label="Search">
+                <button class="btn btn-danger rounded-pill ms-2" type="submit">Search</button>
+            </form>
+
+            <!-- Links de navegação à direita -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        href="https://identity-server.auth.eu-north-1.amazoncognito.com/login?client_id=4drvtgvmv7kvk465ctcktp6e4f&response_type=code&scope=email+openid&redirect_uri=http://localhost:4200/callback">Log
+                        In / Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
