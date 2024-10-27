@@ -1,25 +1,46 @@
 .user-list {
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  thead {
-    background-color: #f2f2f2;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
+  padding: 20px;
+  max-width: 600px; /* Slightly narrower for a neater look */
+  margin: auto;
+  font-family: Arial, sans-serif; /* Cleaner font */
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8em;
+  color: #444;
+  margin-bottom: 30px;
+  letter-spacing: 1px; /* Added subtle letter spacing */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Slightly reduced gap for tighter layout */
+}
+
+.user-card {
+  background-color: #f9f9f9; /* Softer background */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.user-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.user-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.6em;
+  color: #333;
+}
+
+.user-card p {
+  margin: 0;
+  font-size: 1em;
+  color: #555;
+}

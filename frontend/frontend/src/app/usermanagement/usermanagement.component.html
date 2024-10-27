@@ -1,20 +1,9 @@
 <div class="user-list">
-    <h2>User Management</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Sub</th>
-          <th>Email</th>
-          <th>Groups</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.sub }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.groups?.join(', ') || 'No Roles' }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>User Management</h2>
+  <div class="card-container">
+      <div class="user-card" *ngFor="let user of users">
+          <h3>{{ user.email }}</h3>
+          <p>Roles: {{ user.groups?.join(', ') || 'No Roles' }}</p>
+      </div>
   </div>
-  
+</div>
