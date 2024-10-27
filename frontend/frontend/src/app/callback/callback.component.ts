@@ -49,10 +49,26 @@ export class CallbackComponent implements OnInit {
             } else {
               console.warn('localStorage is not available. Token cannot be saved.');
             }
+
+
+            // Redirect to the usermanagement page
+            console.log('Rolesskdbfka:', this.roles);
+            if (this.roles.includes('Admin')) {
+              console.log('Redirecting to usermanagement page...');
+              this.router.navigate(['/usermanagement']);
+            } else if (this.roles.includes('User')) {
+              console.log('Redirecting to user-dashboard page...');
+              this.router.navigate(['/user-dashboard']);
+            } else {
+              console.error('No role found in the token');
+              this.router.navigate(['/']);
+            }
+            
           })
           .catch(error => {
             console.error('Error during token retrieval:', error);
           });
+
 
       } else if (!code) {
         console.error('No code found in redirect');

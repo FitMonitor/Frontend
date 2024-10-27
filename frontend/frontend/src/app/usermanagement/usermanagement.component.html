@@ -1,0 +1,9 @@
+<div class="user-list">
+  <h2>User Management</h2>
+  <div class="card-container">
+      <div class="user-card" *ngFor="let user of users">
+          <h3>{{ user.email }}</h3>
+          <p>Roles: {{ user.groups?.join(', ') || 'No Roles' }}</p>
+      </div>
+  </div>
+</div>
