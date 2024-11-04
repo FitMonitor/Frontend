@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UserDashboardComponent } from './user-dashboard.component';
+import { CommonModule } from '@angular/common'; 
 
 describe('UserDashboardComponent', () => {
   let component: UserDashboardComponent;
@@ -8,7 +8,7 @@ describe('UserDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserDashboardComponent]
+      imports: [CommonModule, UserDashboardComponent]
     })
     .compileComponents();
     

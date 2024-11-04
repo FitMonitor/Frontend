@@ -44,7 +44,7 @@ export class ApiService {
 
     const data = await response.json();
     console.log('Token:', data.id_token);
-    
+
     return data;
   }
 
@@ -59,5 +59,23 @@ export class ApiService {
     });
 
     return await response.json() ?? [];
+  }
+
+  
+  async getGymOccupancy() {
+    const url = `http://localhost:8080/api/gyms/occupancy?id=1`;
+
+    const headers = this.getHeaders(true);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch gym occupancy');
+    }
+
+    return await response.json();
   }
 }
