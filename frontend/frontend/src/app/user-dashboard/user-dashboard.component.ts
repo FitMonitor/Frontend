@@ -11,18 +11,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-dashboard.component.css'
 })
 export class UserDashboardComponent implements OnInit {
-  gymId: number = 2; 
+  gymId: number = 2;
   gymOccupancy: any;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.fetchGymOccupancy();
+    //this.apiService.createGym();
   }
 
   async fetchGymOccupancy() {
     try {
-      this.gymOccupancy = await this.apiService.getGymOccupancy(this.gymId);
+      this.gymOccupancy = await this.apiService.getGymOccupancy();
       console.log('Gym occupancy:', this.gymOccupancy);
     } catch (error) {
       console.error('Error fetching gym occupancy:', error);
@@ -30,8 +31,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   calculateOccupancyPercentage(): number {
-    const { occupancy, capacity } = this.gymOccupancy;
-    return (occupancy / capacity) * 100;
+    return (this.gymOccupancy / 100) * 100;
 }
 
 calculateColor(): string {

@@ -18,14 +18,14 @@
                             </div>
                             <h5 class="card-title">Gym Availability</h5>
                             <p class="card-text">
-                                <strong> {{ gymOccupancy.occupancy }} / {{ gymOccupancy.capacity }}</strong> people currently inside.
+                                <strong> {{ gymOccupancy }} / 100 </strong> people currently inside.
                             </p>
                             <a href="#" class="btn btn-danger">View</a>
                             <div class="progress-container">
-                                <div 
-                                    class="progress-bar" 
-                                    [ngStyle]="{ 
-                                        width: calculateOccupancyPercentage() + '%', 
+                                <div
+                                    class="progress-bar"
+                                    [ngStyle]="{
+                                        width: calculateOccupancyPercentage() + '%',
                                         backgroundColor: calculateColor()
                                     }"
                                 ></div>
