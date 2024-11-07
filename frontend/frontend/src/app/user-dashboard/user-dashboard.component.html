@@ -12,13 +12,32 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card text-center border-danger card-custom">
-                        <div class="card-body">
-                            <div class="icon-container mb-3">
+                        <div class="card-body" *ngIf="gymOccupancy" >
+                            <div class="icon-container mb-3" >
                                 <i class="fas fa-dumbbell fa-3x text-danger"></i>
                             </div>
                             <h5 class="card-title">Gym Availability</h5>
                             <p class="card-text">
-                                <strong>7 / 30</strong> people currently inside.
+                                <strong> {{ gymOccupancy }} / 100 </strong> people currently inside.
+                            </p>
+                            <a href="#" class="btn btn-danger">View</a>
+                            <div class="progress-container">
+                                <div
+                                    class="progress-bar"
+                                    [ngStyle]="{
+                                        width: calculateOccupancyPercentage() + '%',
+                                        backgroundColor: calculateColor()
+                                    }"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngIf="!gymOccupancy">
+                            <div class="icon-container mb-3" >
+                                <i class="fas fa-dumbbell fa-3x text-danger"></i>
+                            </div>
+                            <h5 class="card-title">Gym Availability</h5>
+                            <p class="card-text">
+                                Loading gym occupancy...
                             </p>
                             <a href="#" class="btn btn-danger">View</a>
                         </div>
