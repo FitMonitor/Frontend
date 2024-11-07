@@ -1,9 +1,29 @@
 <div class="user-list">
   <h2>User Management</h2>
+  <input
+    type="text"
+    placeholder="Search by email"
+    [(ngModel)]="searchQuery"
+    class="search-bar"
+  />
   <div class="card-container">
-      <div class="user-card" *ngFor="let user of users">
-          <h3>{{ user.email }}</h3>
-          <p>Roles: {{ user.groups?.join(', ') || 'No Roles' }}</p>
+    <div class="user-card" *ngFor="let user of filteredUsers()">
+      <h3>{{ user.email }}</h3>
+      <p>Roles:</p>
+      <div class="role-buttons">
+        <button
+          [ngClass]="{ 'has-role': user.groups?.includes('User'), 'no-role': !user.groups?.includes('User') }"
+          (click)="toggleUserRole(user.sub, 'User')"
+        >
+          User
+        </button>
+        <button
+          [ngClass]="{ 'has-role': user.groups?.includes('Admin'), 'no-role': !user.groups?.includes('Admin') }"
+          (click)="toggleUserRole(user.sub, 'Admin')"
+        >
+          Admin
+        </button>
       </div>
+    </div>
   </div>
 </div>

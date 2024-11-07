@@ -61,6 +61,23 @@ export class ApiService {
     return await response.json() ?? [];
   }
 
+  async changeUserRole(userId: string, groupName: string, action: string) {
+    const url = `https://kfgnjxm7l2.execute-api.eu-north-1.amazonaws.com/default/addusertogroup`;
+
+    const headers = this.getHeaders(true);
+
+    const body = {
+      userId,
+      groupName,
+      action,
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    });
+  }
   
   async getGymOccupancy() {
     const url = `http://localhost:8080/api/gyms/occupancy?id=1`;
