@@ -6,6 +6,9 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 })
 export class ApiService {
 
+  baseUrl = 'http://16.170.216.31:8080';
+
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
 
   private getAuthToken(): string | null {
@@ -30,7 +33,7 @@ export class ApiService {
 
   async gettoken(code: string) {
     // Construct the GET request URL with the code parameter
-    const url = `http://localhost:8080/api/token/get?code=${code}`;
+    const url = `${this.baseUrl}/api/token/get?code=${code}`;
 
     const headers = new Headers({
       'Content-Type': 'text/plain',
@@ -80,7 +83,7 @@ export class ApiService {
   }
   
   async getGymOccupancy() {
-    const url = `http://localhost:8080/api/gyms/occupancy?id=1`;
+    const url = `http://16.170.216.31:8080/api/gyms/occupancy?id=1`;
 
     const headers = this.getHeaders(true);
 
@@ -94,5 +97,38 @@ export class ApiService {
     }
 
     return await response.json();
+  }
+
+  async getMachines() {
+    const url = `${this.baseUrl}/machine/all`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      // Handle error response
+      console.error('Error fetching machines:', response.statusText);
+      return []; // Return an empty array or handle as needed
+    }
+
+    // Check if response body is empty
+    const text = await response.text();
+    return text ? JSON.parse(text) : []; // Safely parse JSON
+  }
+
+  async createMachine(machine: any) {
+    console.log('Creating machine:', machine);
+    const url = `${this.baseUrl}/machine`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(machine)
+    });
+    return await response.json() ?? undefined;
   }
 }

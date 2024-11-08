@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MachineService } from './machine.service';
 import {MatDialog} from "@angular/material/dialog";
 import {AddmachinemodalComponent} from "../addmachinemodal/addmachinemodal.component";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import { ApiService } from '../service/api.service';
 
 interface Machine {
   id?: number;
@@ -30,14 +30,14 @@ export class AddMachineComponent implements OnInit {
 
   fb = inject(FormBuilder);
 
-  constructor(private dialog: MatDialog,private machineService:MachineService) {}
+  constructor(private dialog: MatDialog, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.loadMachines();
   }
 
   async loadMachines(): Promise<void> {
-    const data = await this.machineService.getMachines();
+    const data = await this.apiService.getMachines();
     this.machines = data ?? [];
   }
 
