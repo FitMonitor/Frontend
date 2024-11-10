@@ -5,10 +5,8 @@ import { UsermanagementComponent } from './usermanagement/usermanagement.compone
 import {AddMachineComponent} from "./addmachine/addmachine.component";
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
-
-
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AddExercisesComponent } from './add-exercises/add-exercises.component';
 
 export const routes: Routes = [
     { path: 'callback', component: CallbackComponent },
@@ -16,9 +14,8 @@ export const routes: Routes = [
     { path: 'machines', component: AddMachineComponent },    
     {path: '', component: HomePageComponent},
     { path: 'user-dashboard', component: UserDashboardComponent },
-    {path: 'admin-navbar', component: AdminNavbarComponent},
-    {path: 'navbar', component: NavbarComponent}
-
+    { path: 'admin-dashboard', component: AdminDashboardComponent},
+    { path: 'add-exercises', component: AddExercisesComponent}
 
 ];
 

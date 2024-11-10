@@ -18,7 +18,12 @@ export class NavbarComponent implements OnInit {
   constructor(private router:Router) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !localStorage.getItem('authToken');
+    if(localStorage.getItem('token')){
+      this.isLoggedIn = true;
+    }
+    else{
+      this.isLoggedIn = false;
+    }
     const roles = localStorage.getItem('roles');
     this.roles = roles ? JSON.parse(roles) : [];
   }
@@ -37,7 +42,7 @@ export class NavbarComponent implements OnInit {
       if (this.isUserView) {
         this.router.navigate(['/user-dashboard']);
       } else {
-        this.router.navigate(['/usermanagement']);
+        this.router.navigate(['/admin-dashboard']);
       }
     }
   }
@@ -46,6 +51,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('roles');
     this.router.navigate(['/']);
     this.isLoggedIn = false;
   }

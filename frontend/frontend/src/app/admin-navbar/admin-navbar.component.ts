@@ -20,7 +20,12 @@ export class AdminNavbarComponent {
   constructor(private router:Router) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !localStorage.getItem('authToken');
+    if(localStorage.getItem('token')){
+      this.isLoggedIn = true;
+    }
+    else{
+      this.isLoggedIn = false;
+    }
     const roles = localStorage.getItem('roles');
     this.roles = roles ? JSON.parse(roles) : [];
   }
@@ -38,13 +43,14 @@ export class AdminNavbarComponent {
       if (this.isUserView) {
         this.router.navigate(['/user-dashboard']);
       } else {
-        this.router.navigate(['/usermanagement']);
+        this.router.navigate(['/admin-dashboard']);
       }
     }
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('token');
+    localStorage.removeItem('roles');
     this.router.navigate(['/']);
     this.isLoggedIn = false;
   }

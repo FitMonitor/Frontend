@@ -1,81 +1,87 @@
-
-div {
-  max-width: 600px; /* Set a maximum width for the container */
-  margin: 0 auto; /* Center the container */
-  padding: 0 ; /* Add some padding */
-  font-family: Arial, sans-serif; /* Use a clean font */
+/* Container styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
 }
 
-/* Button styling */
-button {
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white; /* White text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px 15px; /* Padding */
-  cursor: pointer; /* Pointer cursor on hover */
-  margin: 5px; /* Space between buttons */
-  transition: background-color 0.3s; /* Smooth background transition */
-}
-
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Form label styling */
-label {
-  display: block; /* Block display for labels */
-  margin: 10px 0 5px; /* Spacing for labels */
-}
-
-/* Input and textarea styling */
-input, textarea {
-  width: 100%; /* Full width */
-  padding: 8px; /* Padding inside inputs */
-  border: 1px solid #ced4da; /* Gray border */
-  border-radius: 4px; /* Rounded corners */
-  box-sizing: border-box; /* Include padding and border in width */
-}
-
-input:focus, textarea:focus {
-  outline: none; /* Remove default outline */
-  border-color: #007bff; /* Change border color on focus */
-}
-
-
-.card {
+/* Header styling */
+.header-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px auto;
-  box-sizing: border-box;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.card-content {
-  flex-grow: 1;
-  margin-right: 20px;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: bold;
+.header-row h2 {
+  font-size: 24px;
+  color: #333;
   margin: 0;
 }
 
+.add-machine-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-machine-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Card styling */
+.card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Machine image styling */
+.machine-image {
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  border-right: 1px solid #ddd;
+}
+
+.card-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 10px;
+}
+
 .card-description {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
-  margin: 5px 0 0;
+  margin: 0;
 }
 
 .card-buttons {
   display: flex;
+  flex-direction: column;
   gap: 10px;
+  padding: 20px;
 }
 
 .card-buttons button {
@@ -83,109 +89,33 @@ input:focus, textarea:focus {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
 }
 
 .edit-btn {
   background-color: #4CAF50;
-  color: white;
 }
 
 .delete-btn {
   background-color: #f44336;
-  color: white;
 }
 
-/* Media Query for Mobile Devices */
+/* Media query for mobile */
 @media (max-width: 600px) {
   .card {
     flex-direction: column;
-    align-items: flex-start;
   }
 
-  .card-content {
-    margin-right: 0;
-    margin-bottom: 10px;
+  .machine-image {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
   }
 
   .card-buttons {
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
-    justify-content: flex-end;
-  }
-
-  .card-buttons button {
-    flex: 1;
   }
 }
-
-
-.modal {
-  display: flex; /* Use flexbox to center the modal */
-  position: fixed; /* Position it fixed to cover the whole screen */
-  z-index: 1000; /* Ensure it's on top of other content */
-  left: 0; /* Align to the left */
-  top: 0; /* Align to the top */
-  width: auto; /* Full width to cover the viewport */
-  height: auto; /* Full height to cover the viewport */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for the overlay */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  margin-left: 600px;
-}
-
-.modal-content {
-  background-color: #fff; /* White background for the modal content */
-  border: 1px solid #888; /* Optional border */
-  width: 90%; /* Set width to 90% for smaller screens */
-  max-width: 500px; /* Maximum width of the modal */
-  border-radius: 8px; /* Optional: rounded corners */
-  position: relative; /* Position relative for the close button */
-  padding: 20px; /* Add padding for the content */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-  overflow: hidden; /* Prevent overflow */
-}
-
-/* Media Queries */
-@media (max-width: 600px) {
-  .modal-content {
-    width: 95%; /* Wider for small screens */
-    padding: 15px; /* Less padding for smaller screens */
-  }
-}
-
-/* styles.css */
-.custom-toolbar {
-  background-color: grey; /* Set to the desired grey shade */
-  color: white;           /* Optional: Adjust text color for readability */
-}
-
-.nav-link {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  padding: 0 15px;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-/* styles.css */
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.header-row h2 {
-  margin: 0;
-}
-
-.header-row button {
-  /* Optional: Add some styling to the button */
-  padding: 5px 10px;
-}
-
-
-
