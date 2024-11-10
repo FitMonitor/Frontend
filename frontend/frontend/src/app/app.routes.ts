@@ -5,7 +5,8 @@ import { UsermanagementComponent } from './usermanagement/usermanagement.compone
 import {AddMachineComponent} from "./addmachine/addmachine.component";
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -15,6 +16,9 @@ export const routes: Routes = [
     { path: 'machines', component: AddMachineComponent },    
     {path: '', component: HomePageComponent},
     { path: 'user-dashboard', component: UserDashboardComponent },
+    {path: 'admin-navbar', component: AdminNavbarComponent},
+    {path: 'navbar', component: NavbarComponent}
+
 
 ];
 
