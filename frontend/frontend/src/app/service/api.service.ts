@@ -6,7 +6,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 })
 export class ApiService {
 
-  baseUrl = 'http://16.170.216.31:8080';
+  baseUrl = 'http://13.48.204.151:8080';
 
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
@@ -83,7 +83,7 @@ export class ApiService {
   }
   
   async getGymOccupancy() {
-    const url = `http://16.170.216.31:8080/api/gyms/occupancy?id=1`;
+    const url = `${this.baseUrl}/api/gyms/occupancy?id=1`;
 
     const headers = this.getHeaders(true);
 
