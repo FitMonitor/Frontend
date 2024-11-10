@@ -55,7 +55,7 @@ export class CallbackComponent implements OnInit {
             console.log('Rolesskdbfka:', this.roles);
             if (this.roles.includes('Admin')) {
               console.log('Redirecting to usermanagement page...');
-              this.router.navigate(['/usermanagement']);
+              this.router.navigate(['/admin-dashboard']);
             } else if (this.roles.includes('User')) {
               console.log('Redirecting to user-dashboard page...');
               this.router.navigate(['/user-dashboard']);
