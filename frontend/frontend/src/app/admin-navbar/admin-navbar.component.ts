@@ -1,19 +1,21 @@
-import { Component,OnInit} from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Component ,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
+import { NgIf } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
+
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   standalone: true,
-  imports: [NgIf,AdminNavbarComponent],
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'] // Note the plural 'styleUrls'
+  imports: [NgIf,NavbarComponent],
+  templateUrl: './admin-navbar.component.html',
+  styleUrl: './admin-navbar.component.css'
 })
-export class NavbarComponent implements OnInit {
+export class AdminNavbarComponent {
+
   isLoggedIn: boolean = false;
+  isUserView: boolean = false;
   roles: string[] = [];
-  isUserView: boolean = true;
 
   constructor(private router:Router) {}
 
@@ -32,7 +34,6 @@ export class NavbarComponent implements OnInit {
     return this.isLoggedIn && this.roles.includes('Admin') && this.roles.includes('User');
   }
 
-
   toggleView(): void {
     // Toggle the boolean value
     this.isUserView = !this.isUserView;
@@ -46,8 +47,6 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-
-  
 
   logout(): void {
     localStorage.removeItem('token');

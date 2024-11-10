@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddmachinemodalComponent } from './addmachinemodal.component';
 
-describe('AddmachinemodalComponent', () => {
-  let component: AddmachinemodalComponent;
-  let fixture: ComponentFixture<AddmachinemodalComponent>;
+import { AdminNavbarComponent } from './admin-navbar.component';
+
+describe('AdminNavbarComponent', () => {
+  let component: AdminNavbarComponent;
+  let fixture: ComponentFixture<AdminNavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddmachinemodalComponent]
+      imports: [AdminNavbarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AddmachinemodalComponent);
+    fixture = TestBed.createComponent(AdminNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
