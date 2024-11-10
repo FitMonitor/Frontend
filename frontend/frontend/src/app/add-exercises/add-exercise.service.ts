@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AddExerciseService {
 
-  private apiUrl = 'http://localhost:8080/api/exercises';  
-  private apiUrlMachines = 'http://localhost:8080/machine'
+  private apiUrl = 'http://13.51.167.237:8080/api/exercises';  
+  private apiUrlMachines = 'http://13.51.167.237:8080/machine'
 
   constructor() {}
 

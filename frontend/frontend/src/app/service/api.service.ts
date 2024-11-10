@@ -6,7 +6,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 })
 export class ApiService {
 
-  baseUrl = 'http://13.48.204.151:8080';
+  baseUrl = 'http://13.51.167.237:8080';
 
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
