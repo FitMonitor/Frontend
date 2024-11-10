@@ -44,6 +44,7 @@ export class CallbackComponent implements OnInit {
             const localStorage = this.document.defaultView?.localStorage;
             if (localStorage) {
               localStorage.setItem('token', this.token); // Save the id_token
+              localStorage.setItem('roles', JSON.stringify(this.roles)); // Save the roles
               console.log('Token saved in localStorage');
               console.log('Token:', this.token);
             } else {
@@ -51,11 +52,9 @@ export class CallbackComponent implements OnInit {
             }
 
 
-            // Redirect to the usermanagement page
-            console.log('Rolesskdbfka:', this.roles);
             if (this.roles.includes('Admin')) {
               console.log('Redirecting to usermanagement page...');
-              this.router.navigate(['/usermanagement']);
+              this.router.navigate(['/admin-dashboard']);
             } else if (this.roles.includes('User')) {
               console.log('Redirecting to user-dashboard page...');
               this.router.navigate(['/user-dashboard']);

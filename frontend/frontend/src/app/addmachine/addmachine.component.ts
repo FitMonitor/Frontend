@@ -7,6 +7,8 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import { ApiService } from '../service/api.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 
 interface Machine {
   id?: number;
@@ -19,7 +21,7 @@ interface Machine {
 @Component({
   selector: 'app-add-machine',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatToolbar, MatButton, RouterLink, MatAnchor],
+  imports: [CommonModule, ReactiveFormsModule, MatToolbar, MatButton, RouterLink, MatAnchor,NavbarComponent,AdminNavbarComponent],
   templateUrl: './addmachine.component.html',
   styleUrls: ['./addmachine.component.css']
 })

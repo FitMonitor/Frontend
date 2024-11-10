@@ -3,12 +3,14 @@ import { ApiService } from '../service/api.service';
 import { User } from '../model/user.model';
 import { NgClass, NgFor } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 
 
 @Component({
   selector: 'app-usermanagement',
   standalone: true,
-  imports: [ NgFor, NgClass, FormsModule],
+  imports: [ NgFor, NgClass, FormsModule,NavbarComponent,AdminNavbarComponent],
   templateUrl: './usermanagement.component.html',
   styleUrl: './usermanagement.component.css'
 })

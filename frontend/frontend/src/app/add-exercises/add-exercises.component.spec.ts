@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddmachinemodalComponent } from './addmachinemodal.component';
 
-describe('AddmachinemodalComponent', () => {
-  let component: AddmachinemodalComponent;
-  let fixture: ComponentFixture<AddmachinemodalComponent>;
+import { AddExercisesComponent } from './add-exercises.component';
+
+describe('AddExercisesComponent', () => {
+  let component: AddExercisesComponent;
+  let fixture: ComponentFixture<AddExercisesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddmachinemodalComponent]
+      imports: [AddExercisesComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AddmachinemodalComponent);
+    fixture = TestBed.createComponent(AddExercisesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

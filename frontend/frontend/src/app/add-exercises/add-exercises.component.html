@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <h2>Add New Exercise</h2>
+
+    <form (ngSubmit)="onSubmit()" *ngIf="machines.length && categories.length && muscleGroups.length">
+        <div class="form-group">
+            <label for="exerciseName">Exercise Name</label>
+            <input type="text" id="exerciseName" [(ngModel)]="exerciseName" name="exerciseName" class="form-control"
+                required />
+        </div>
+
+        <div class="form-group">
+            <label for="machine">Machine</label>
+            <select id="machine" [(ngModel)]="machineId" name="machineId" class="form-control" required>
+                <option *ngFor="let machine of machines" [value]="machine.id">{{ machine.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" [(ngModel)]="category" name="category" class="form-control" required>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="muscleGroup">Muscle Group</label>
+            <select id="muscleGroup" [(ngModel)]="muscleGroup" name="muscleGroup" class="form-control" required>
+                <option *ngFor="let muscle of muscleGroups" [value]="muscle">{{ muscle }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" [(ngModel)]="description" name="description" class="form-control"
+                required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-danger mt-3">Add Exercise</button>
+    </form>
+
+    <div *ngIf="!machines.length || !categories.length || !muscleGroups.length">
+        <p>Loading data... please wait.</p>
+    </div>
+
+    <div class="mt-5">
+        <h3>All Exercises</h3>
+        <ul *ngIf="exercises.length; else noExercises">
+            <li *ngFor="let exercise of exercises">
+                <strong>{{ exercise.exerciseName }}</strong> - {{ exercise.category }} - {{ exercise.muscleGroup }} 
+                <p><em>{{ exercise.description }}</em></p>
+            </li>
+        </ul>
+        <ng-template #noExercises>
+            <p>No exercises available yet.</p>
+        </ng-template>
+    </div>
+</div>

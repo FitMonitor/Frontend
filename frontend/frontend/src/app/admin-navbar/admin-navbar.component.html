@@ -21,10 +21,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
                 </li>
+                
+                <!-- Show "Add Machines" only if Admin role is present -->
+                <li class="nav-item">
+                    <a class="nav-link" href="machines">Add Machines</a>
+                </li>
+                
+                <!-- Show "Add Users" only if Admin role is present -->
+                <li class="nav-item">
+                    <a class="nav-link" href="usermanagement">Add Users</a>
+                </li>
 
                 <li class="nav-item" *ngIf="isLoggedIn && showToggleButton()">
                     <button class="btn btn-primary" (click)="toggleView()">
-                        {{ 'Switch to Admin View' }}
+                        {{ 'Switch to User View'}}
                     </button>
                 </li>
 
@@ -38,4 +48,5 @@
         </div>
     </div>
 </nav>
+
 
