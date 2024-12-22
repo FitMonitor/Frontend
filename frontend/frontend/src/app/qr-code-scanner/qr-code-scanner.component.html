@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div class="qr-scanner-container">
+  <div class="video-container">
+    <video #preview class="qr-video"></video>
+  </div>
+  <div class="button-container">
+    <button class="scan-button" (click)="startScan()">Start Scanner</button>
+    <button class="scan-button" (click)="stopScan()">Stop Scanner</button>
+  </div>
+</div>
+<p *ngIf="scanResult" class="scan-result">Scanned Result: {{ scanResult }}</p>
+

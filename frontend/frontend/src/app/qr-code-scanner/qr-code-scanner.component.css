@@ -1,0 +1,57 @@
+.qr-scanner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Pushes the buttons to the bottom */
+    width: 100%;
+  }
+  
+  .qr-video {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16 / 9; /* Keeps the video aspect ratio */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 16px 0;
+  }
+  
+  .scan-button {
+    flex: 1;
+    margin: 0 8px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .scan-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .scan-result {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 18px;
+    color: #333;
+  }
+  
