@@ -1,0 +1,17 @@
+.qr-code-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .qr-code-image {
+    margin-top: 20px;
+  }
+  
+  img {
+    max-width: 300px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  
