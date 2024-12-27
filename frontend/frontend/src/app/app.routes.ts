@@ -8,6 +8,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AddExercisesComponent } from './add-exercises/add-exercises.component';
 import { QrCodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component';
+import { QrCodeScannerEntranceComponent } from './qr-code-scanner-entrance/qr-code-scanner-entrance.component';
 
 export const routes: Routes = [
     { path: 'callback', component: CallbackComponent },
@@ -17,7 +18,8 @@ export const routes: Routes = [
     { path: 'user-dashboard', component: UserDashboardComponent },
     { path: 'admin-dashboard', component: AdminDashboardComponent},
     { path: 'add-exercises', component: AddExercisesComponent},
-    {path:'qr-code-scanner',component:QrCodeScannerComponent}
+    {path:'qr-code-scanner',component:QrCodeScannerComponent},
+    {path:'qr-code-entrance',component:QrCodeScannerEntranceComponent}
 
 ];
 

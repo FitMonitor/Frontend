@@ -11,7 +11,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {MatButton} from "@angular/material/button";
-import {MachineService} from "../addmachine/machine.service";
+import {ApiService} from "../service/api.service";
 
 @Component({
   selector: 'app-addmachinemodal',
@@ -34,7 +34,7 @@ import {MachineService} from "../addmachine/machine.service";
 export class AddmachinemodalComponent {
   machineForm!: FormGroup;
 
-  constructor( private fb: FormBuilder, private machineService:MachineService,private dialogRef: MatDialogRef<AddmachinemodalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( private fb: FormBuilder, private apiService:ApiService,private dialogRef: MatDialogRef<AddmachinemodalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.machineForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
@@ -53,9 +53,9 @@ export class AddmachinemodalComponent {
     console.log('Machine data:', machineData);
 
     try {
-      console.log(this.machineService.isPlatformBrowser())
-      if (this.machineService.isPlatformBrowser()) {
-        const newMachine = await this.machineService.createMachine(machineData);
+      console.log(this.apiService.isPlatformBrowser())
+      if (this.apiService.isPlatformBrowser()) {
+        const newMachine = await this.apiService.createMachine(machineData);
         console.log('New task:', newMachine);
         this.dialogRef.close(newMachine);  // Return new task to the caller
       }

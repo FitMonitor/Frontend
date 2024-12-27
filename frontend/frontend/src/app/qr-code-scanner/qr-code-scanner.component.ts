@@ -2,6 +2,7 @@
   import { BrowserMultiFormatReader } from '@zxing/browser';
   import { NgIf } from '@angular/common';
   import { NavbarComponent } from "../navbar/navbar.component";
+  import {ApiService} from "../service/api.service";
 
   @Component({
     selector: 'app-qr-code-scanner',
@@ -15,7 +16,7 @@
     scanResult: string | null = null;
     private scannerControls: any | null = null; 
 
-    constructor() {
+    constructor(private apiService:ApiService) {
       this.scanner = new BrowserMultiFormatReader();
     }
 
@@ -29,6 +30,28 @@
         }
         if (result) {
           this.scanResult = result.getText();
+          const testData = {
+            "machineId": '1',
+            "intention": 'use'
+          };
+          this.apiService.sendMachineStatus(testData)
+            .then((response) => {
+              // Check the response value and show the message if needed
+              console.log('Response:', response);
+              if (response=="False") {
+                console.log("1")
+
+              }
+              else if (response=="True"){
+                console.log("2")
+              }
+            })
+            .catch((error) => {
+              console.error('Error occurred:', error);
+              //this.errorMessage = 'Failed to update machine status.';
+            });
+
+
           this.stopScan(); // Automatically stop scanning after a result
         }
         if (error && error.name !== 'NotFoundException') {
