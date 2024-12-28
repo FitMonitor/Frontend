@@ -6,6 +6,10 @@
 <div class="container-fluid p-0"
     style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh; height: 100%; overflow-x: hidden;">
 
+    <div *ngIf="message" class="alert alert-info text-center mt-3">
+        {{ message }}
+      </div>
+            
     <section class="dashboard-section py-5">
         <div class="container">
 

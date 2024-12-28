@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from '../service/api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -13,13 +14,23 @@ import { CommonModule } from '@angular/common';
 export class UserDashboardComponent implements OnInit {
   gymId: number = 2;
   gymOccupancy: any;
+  message: string | null = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {
+    this.message = this.router.getCurrentNavigation()?.extras.state?.['message'];
+  }
 
   ngOnInit(): void {
+    if (this.message) {
+      // Automatically clear the message after 2 seconds
+      setTimeout(() => {
+        this.message = null;
+      }, 5000);
+    }
+  
     this.fetchGymOccupancy();
-    //this.apiService.createGym();
   }
+  
 
   async fetchGymOccupancy() {
     try {
