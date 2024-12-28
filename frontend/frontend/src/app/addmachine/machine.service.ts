@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' }) // This line makes it available globally
 export class MachineService {
-  baseUrl = 'http://localhost:8080/machine';
+  baseUrl = 'http://localhost:9090/machine';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
