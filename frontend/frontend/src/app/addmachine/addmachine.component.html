@@ -23,10 +23,29 @@
         <div class="card-body text-center">
           <h5 class="card-title text-danger">{{ machine.name }}</h5>
           <p class="card-text">{{ machine.description }}</p>
+          <button class="btn btn-danger mt-2" (click)="showQRCode(machine)">Show QR Code</button>
         </div>
       </div>
     </div>
   </div>
+  
+  <div class="modal fade show" tabindex="-1" *ngIf="showModal" style="display: block;" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="text-danger">QR Code for {{ selectedMachine?.name }}</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeQRCodeModal()"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" alt="QR Code" class="img-fluid" />
+          <p *ngIf="!qrCodeUrl" class="text-danger">Failed to load QR Code</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger mt-2" (click)="closeQRCodeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
