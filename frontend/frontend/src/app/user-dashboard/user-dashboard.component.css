@@ -1,4 +1,3 @@
-    /* Seção Hero */
     .hero-section {
         min-height: 60vh;
         display: flex;
@@ -7,7 +6,6 @@
         text-align: center;
     }
 
-    /* Seção CTA */
     .cta-section {
         background-color: #f8f9fa;
     }
@@ -16,7 +14,6 @@
         border-radius: 10px;
     }
 
-    /* Botões personalizados */
     .btn-danger {
         background-color: #ff0000;
         border-color: #ff0000;

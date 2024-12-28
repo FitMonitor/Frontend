@@ -25,6 +25,7 @@
     "@angular/ssr": "^17.0.6",
     "@aws-amplify/auth": "^6.5.1",
     "@aws-amplify/ui-angular": "^5.0.28",
+    "@zxing/browser": "^0.1.5",
     "aws-amplify": "^6.6.4",
     "bootstrap": "^5.3.3",
     "express": "^4.18.2",
