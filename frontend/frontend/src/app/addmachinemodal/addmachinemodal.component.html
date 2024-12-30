@@ -1,20 +1,22 @@
-<h1 mat-dialog-title>Add Machine</h1>
-
-<div mat-dialog-content>
+<div class="modal-simple">
+  <h2 class="text-danger text-center mb-4">Add Machine</h2>
+  
   <form [formGroup]="machineForm" (ngSubmit)="save()">
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" />
-    </mat-form-field>
+    <div class="mb-3">
+      <label for="machineName" class="form-label">Name</label>
+      <input type="text" id="machineName" class="form-control" formControlName="name" placeholder="Enter machine name" />
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <input matInput formControlName="description" />
-    </mat-form-field>
-    <!-- Ensure buttons are inside the form -->
-    <div mat-dialog-actions>
-      <button mat-button type="button" (click)="onCancel()">Cancel</button>
-      <button mat-raised-button color="primary" type="submit">Save</button>
+    <div class="mb-3">
+      <label for="machineDescription" class="form-label">Description</label>
+      <textarea id="machineDescription" class="form-control" formControlName="description" rows="3" placeholder="Enter machine description"></textarea>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn btn-danger">Save</button>
     </div>
   </form>
 </div>
+
+
