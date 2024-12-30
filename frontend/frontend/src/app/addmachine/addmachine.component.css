@@ -1,121 +1,74 @@
-/* Container styling */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  color: #333;
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #dc3545;
 }
 
-/* Header styling */
 .header-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.header-row h2 {
-  font-size: 24px;
-  color: #333;
-  margin: 0;
-}
-
-.add-machine-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.add-machine-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Card styling */
-.card {
-  display: flex;
   align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.btn-danger {
+  background-color: #ff0000;
+  border-color: #ff0000;
+}
+
+.btn-danger:hover {
+  background-color: #ffffff;
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+.btn-outline-danger {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.card {
+  border: 1px solid #dc3545;
+  border-radius: 0.375rem;
   overflow: hidden;
-  transition: box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.15);
-}
-
-/* Machine image styling */
-.machine-image {
-  width: 40%;
-  height: 100%;
-  object-fit: cover;
-  border-right: 1px solid #ddd;
-}
-
-.card-content {
-  flex: 1;
-  padding: 20px;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #333;
-  margin: 0 0 10px;
+  color: #dc3545;
+  margin-bottom: 0.5rem;
 }
 
-.card-description {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
+.card-text {
+  font-size: 0.9rem;
+  color: #6c757d;
 }
 
-.card-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+.row.g-4 {
+  margin-top: 1.5rem;
 }
 
-.card-buttons button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: white;
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.edit-btn {
-  background-color: #4CAF50;
+.modal-content {
+  border-radius: 10px;
 }
 
-.delete-btn {
-  background-color: #f44336;
-}
-
-/* Media query for mobile */
-@media (max-width: 600px) {
-  .card {
-    flex-direction: column;
-  }
-
-  .machine-image {
-    width: 100%;
-    height: 200px;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .card-buttons {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-  }
+.modal-body img {
+  max-width: 100%;
+  height: auto;
 }

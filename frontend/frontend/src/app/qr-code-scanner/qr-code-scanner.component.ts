@@ -31,12 +31,12 @@ export class QrCodeScannerComponent implements OnInit, OnDestroy {
       }
       if (result) {
         this.scanResult = result.getText();
-        const testData = {
-          "machineId": '2', 
+        const qr_code_data = {
+          "machineId": this.scanResult, 
           "intention": 'use'
         };
 
-        this.apiService.sendMachineStatus(testData)
+        this.apiService.sendMachineStatus(qr_code_data)
           .then((response) => {
             let message = "";
             if (response == "False") {

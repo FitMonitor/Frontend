@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router:Router) {}
 
+  /*
   ngOnInit(): void {
     if(localStorage.getItem('token')){
       this.isLoggedIn = true;
@@ -26,7 +27,18 @@ export class NavbarComponent implements OnInit {
     }
     const roles = localStorage.getItem('roles');
     this.roles = roles ? JSON.parse(roles) : [];
+  }*/
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      this.isLoggedIn = !!token;
+  
+      const roles = localStorage.getItem('roles');
+      this.roles = roles ? JSON.parse(roles) : [];
+    }
   }
+  
 
   showToggleButton(): boolean {
     return this.isLoggedIn && this.roles.includes('Admin') && this.roles.includes('User');
@@ -46,8 +58,6 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-
-  
 
   logout(): void {
     localStorage.removeItem('token');

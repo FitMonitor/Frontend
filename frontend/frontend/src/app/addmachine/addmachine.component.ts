@@ -9,6 +9,7 @@ import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 interface Machine {
   id?: number;
@@ -29,10 +30,12 @@ export class AddMachineComponent implements OnInit {
   machineForm!: FormGroup;
   machines: Machine[] = [];
   showModal: boolean = false;
+  qrCodeUrl: SafeUrl | null = null; 
+  selectedMachine: Machine | null = null; 
 
   fb = inject(FormBuilder);
 
-  constructor(private dialog: MatDialog,private apiService:ApiService) {}
+  constructor(private dialog: MatDialog, private apiService:ApiService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.loadMachines();
@@ -55,12 +58,29 @@ export class AddMachineComponent implements OnInit {
     });
   }
 
-  editMachine(){
-    //implement edit machine
-  }
+  async showQRCode(machine: Machine): Promise<void> {
+    if (!machine.id) {
+      console.error('Machine ID is undefined.');
+      return;
+    }
+  
+    try {
+      const qrCodeBlob = await this.apiService.getMachineQRCode(machine.id.toString());
+      if (qrCodeBlob) {
+        const qrCodeObjectURL = URL.createObjectURL(qrCodeBlob);
+        this.qrCodeUrl = this.sanitizer.bypassSecurityTrustUrl(qrCodeObjectURL);
+        this.selectedMachine = machine;
+        this.showModal = true; 
+      }
+    } catch (error) {
+      console.error('Failed to fetch QR Code:', error);
+    }
+  } 
 
-  deleteMachine(){
-    //implement delete machine
+  closeQRCodeModal(): void {
+    this.showModal = false;
+    this.qrCodeUrl = null;
+    this.selectedMachine = null;
   }
 
 }

@@ -216,5 +216,25 @@ export class ApiService {
       throw error;
     }
   }
+
+  async getMachineQRCode(machineId: string): Promise<Blob | null> {
+    const url = `http://localhost:8080/api/qrcode/generate-machine`;
+    const token = localStorage.getItem('token');
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ machineId }),
+    });
+  
+    if (!response.ok) {
+      console.error('Error fetching QR code:', response.statusText);
+      return null;
+    }
+  
+    return await response.blob(); 
+  }
   
 }

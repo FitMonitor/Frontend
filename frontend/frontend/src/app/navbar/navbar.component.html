@@ -17,13 +17,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
                     <a class="nav-link" href="check-in">Check-in & Check-out</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
                     <a class="nav-link" href="machine-status">Machines</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
                     <a class="nav-link" href="qr-code-scanner">Scan Machine QR Code</a>
                 </li>
                 
