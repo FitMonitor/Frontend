@@ -6,10 +6,10 @@
 <div class="container-fluid p-0"
     style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh; height: 100%; overflow-x: hidden;">
 
-    <div *ngIf="message" class="alert alert-info text-center mt-3">
+    <!--<div *ngIf="message" class="alert alert-info text-center mt-3">
         {{ message }}
-      </div>
-            
+      </div>-->
+
     <section class="dashboard-section py-5">
         <div class="container">
 
@@ -29,8 +29,7 @@
                                         </p>
                                         <a href="#" class="btn btn-danger">View</a>
                                         <div class="progress-container">
-                                            <div class="progress-bar"
-                                                [ngStyle]="{
+                                            <div class="progress-bar" [ngStyle]="{
                                                     width: calculateOccupancyPercentage() + '%',
                                                     backgroundColor: calculateColor()
                                                 }"></div>
@@ -44,7 +43,6 @@
                                         <p class="card-text">
                                             Loading gym occupancy...
                                         </p>
-                                        <a href="#" class="btn btn-danger">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -66,13 +64,13 @@
                                 <div class="card text-center border-danger card-custom">
                                     <div class="card-body">
                                         <div class="icon-container mb-3">
-                                            <i class="fas fa-clipboard-list fa-3x text-danger"></i>
+                                            <i class="fas fa-cogs fa-3x text-danger"></i>
                                         </div>
-                                        <h5 class="card-title">Create Gym Routine</h5>
+                                        <h5 class="card-title">Gym Machines</h5>
                                         <p class="card-text">
-                                            Customize your own workout plan.
+                                            Check the availability of gym machines.
                                         </p>
-                                        <a href="#" class="btn btn-danger">Create</a>
+                                        <a href="/machine-status" class="btn btn-danger">Check Availability</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,8 +133,7 @@
                             </p>
                             <a href="#" class="btn btn-danger">View</a>
                             <div class="progress-container">
-                                <div class="progress-bar"
-                                    [ngStyle]="{
+                                <div class="progress-bar" [ngStyle]="{
                                         width: calculateOccupancyPercentage() + '%',
                                         backgroundColor: calculateColor()
                                     }"></div>
@@ -150,7 +147,6 @@
                             <p class="card-text">
                                 Loading gym occupancy...
                             </p>
-                            <a href="#" class="btn btn-danger">View</a>
                         </div>
                     </div>
                 </div>
@@ -174,13 +170,13 @@
                     <div class="card text-center border-danger card-custom">
                         <div class="card-body">
                             <div class="icon-container mb-3">
-                                <i class="fas fa-clipboard-list fa-3x text-danger"></i>
+                                <i class="fas fa-cogs fa-3x text-danger"></i>
                             </div>
-                            <h5 class="card-title">Create Gym Routine</h5>
+                            <h5 class="card-title">Gym Machines</h5>
                             <p class="card-text">
-                                Customize your own workout plan.
+                                Check the availability of gym machines.
                             </p>
-                            <a href="#" class="btn btn-danger">Create</a>
+                            <a href="/machine-status" class="btn btn-danger">Check Availability</a>
                         </div>
                     </div>
                 </div>

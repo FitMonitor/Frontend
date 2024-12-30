@@ -1,19 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="assets/Logo.svg" alt="Fit Monitor Logo" width="70" height="70" class="me-2">FIT Monitor
         </a>
 
-        <!-- Botão de menu (hamburger) para mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Elementos da Navbar: Search bar e links -->
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <!-- Links de navegação à direita -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="user-dashboard">Home</a>
@@ -21,14 +17,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="check-in">Check-in & Check-out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="machine-status">Machines</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="qr-code-scanner">Scan Machine QR Code</a>
+                </li>
+                
                 <li class="nav-item" *ngIf="isLoggedIn && showToggleButton()">
                     <button class="btn btn-primary" (click)="toggleView()">
                         {{ 'Switch to Admin View' }}
                     </button>
                 </li>
 
-                <!-- Show "Log In / Sign Up" if no roles are present -->
                 <li class="nav-item">
                     <a class="nav-link" href="#" (click)="handleAuthAction()">
                         {{ isLoggedIn ? 'Log Out' : 'Log In / Sign Up' }}

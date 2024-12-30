@@ -32,7 +32,7 @@ export class QrCodeScannerComponent implements OnInit, OnDestroy {
       if (result) {
         this.scanResult = result.getText();
         const testData = {
-          "machineId": '2',
+          "machineId": '2', 
           "intention": 'use'
         };
 
@@ -50,14 +50,14 @@ export class QrCodeScannerComponent implements OnInit, OnDestroy {
             }
 
             // Redirect to the homepage with the message
-            this.router.navigate(['/user-dashboard'], { state: { message: message } });
+            this.router.navigate(['/machine-status'], { state: { message: message } });
 
             console.log('Message:', message);
           })
           .catch((error) => {
             console.error('Error occurred:', error);
             const message = "Failed to update machine status. Please try again.";
-            this.router.navigate(['/user-dashboard'], { state: { message } });
+            this.router.navigate(['/machine-status'], { state: { message } });
           });
 
         this.stopScan(); // Automatically stop scanning after a result

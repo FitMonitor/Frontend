@@ -6,7 +6,7 @@ import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgIf,AdminNavbarComponent],
+  imports: [NgIf],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'] // Note the plural 'styleUrls'
 })
