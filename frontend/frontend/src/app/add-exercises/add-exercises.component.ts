@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 
 @Component({
   selector: 'app-add-exercises',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule, AdminNavbarComponent],
   templateUrl: './add-exercises.component.html',
   styleUrls: ['./add-exercises.component.css']
 })

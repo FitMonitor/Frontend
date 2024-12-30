@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MachineService } from './machine.service';
+import { ApiService } from '../service/api.service';
 import {MatDialog} from "@angular/material/dialog";
 import {AddmachinemodalComponent} from "../addmachinemodal/addmachinemodal.component";
 import {MatToolbar} from "@angular/material/toolbar";
@@ -35,14 +35,14 @@ export class AddMachineComponent implements OnInit {
 
   fb = inject(FormBuilder);
 
-  constructor(private dialog: MatDialog, private machineService: MachineService, private sanitizer: DomSanitizer) {}
+  constructor(private dialog: MatDialog, private apiService:ApiService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.loadMachines();
   }
 
   async loadMachines(): Promise<void> {
-    const data = await this.machineService.getMachines();
+    const data = await this.apiService.getMachines();
     this.machines = data ?? [];
   }
 
@@ -58,14 +58,6 @@ export class AddMachineComponent implements OnInit {
     });
   }
 
-  editMachine(){
-    //implement edit machine
-  }
-
-  deleteMachine(){
-    //implement delete machine
-  }
-
   async showQRCode(machine: Machine): Promise<void> {
     if (!machine.id) {
       console.error('Machine ID is undefined.');
@@ -73,7 +65,7 @@ export class AddMachineComponent implements OnInit {
     }
   
     try {
-      const qrCodeBlob = await this.machineService.getMachineQRCode(machine.id.toString());
+      const qrCodeBlob = await this.apiService.getMachineQRCode(machine.id.toString());
       if (qrCodeBlob) {
         const qrCodeObjectURL = URL.createObjectURL(qrCodeBlob);
         this.qrCodeUrl = this.sanitizer.bypassSecurityTrustUrl(qrCodeObjectURL);

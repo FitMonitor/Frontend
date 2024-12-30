@@ -16,7 +16,7 @@
             <!-- Links de navegação à direita -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="user-dashboard">Home</a>
+                    <a class="nav-link" href="admin-dashboard">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
@@ -29,7 +29,15 @@
                 
                 <!-- Show "Add Users" only if Admin role is present -->
                 <li class="nav-item">
-                    <a class="nav-link" href="usermanagement">Add Users</a>
+                    <a class="nav-link" href="add-exercises">Add Users</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="usermanagement">Change Roles</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="qr-code-entrance">QR Code Scan</a>
                 </li>
 
                 <li class="nav-item" *ngIf="isLoggedIn && showToggleButton()">
