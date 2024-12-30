@@ -38,7 +38,7 @@ export class QrCodeScannerEntranceComponent implements OnInit, OnDestroy {
         this.scanResult = result.getText();
 
         const testData = {
-          token: "1234567890",};
+          token: this.scanResult,};
 
         this.apiService.manageGymEntrance(testData)
           .then((response) => {
