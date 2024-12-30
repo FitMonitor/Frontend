@@ -33,6 +33,7 @@ import {ApiService} from "../service/api.service";
 })
 export class AddmachinemodalComponent {
   machineForm!: FormGroup;
+  selectedFile: File | null = null;
 
   constructor( private fb: FormBuilder, private apiService:ApiService,private dialogRef: MatDialogRef<AddmachinemodalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.machineForm = this.fb.group({
@@ -43,24 +44,46 @@ export class AddmachinemodalComponent {
   }
 
   async save(): Promise<void> {
-    console.log(this.machineForm)
     if (this.machineForm.invalid) {
       console.error('Form is invalid');
       return;
     }
-
+  
     const machineData = this.machineForm.value;
-    console.log('Machine data:', machineData);
+    const formData = new FormData();
+  
+    // Append form fields
+    formData.append('name', machineData.name);
+    formData.append('description', machineData.description);
+    formData.append('available', String(machineData.available));
 
+    // Append the file if it exists
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    } else {
+      console.warn('No image file selected');
+    }
+  
+    // Debugging the FormData contents
+    console.log('FormData contents:');
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+  
     try {
-      console.log(this.apiService.isPlatformBrowser())
-      if (this.apiService.isPlatformBrowser()) {
-        const newMachine = await this.apiService.createMachine(machineData);
-        console.log('New task:', newMachine);
-        this.dialogRef.close(newMachine);  // Return new task to the caller
-      }
+      const newMachine = await this.apiService.createMachine(formData);
+      this.dialogRef.close(newMachine); // Close dialog and return the new machine
     } catch (error) {
-      console.error('Error saving task:', error);
+      console.error('Error saving machine:', error);
+    }
+  }
+  
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
     }
   }
 

@@ -34,6 +34,19 @@ export class ApiService {
 
   }
 
+  private getHeaders2(withAuth: boolean = false):Headers{
+    const headers = new Headers({
+    });
+    if (withAuth) {
+      const token = this.getAuthToken();
+      if (token) {
+        headers.append('Authorization', `Bearer ${token}`);
+      }
+    }
+    return headers;
+
+  }
+
   private getHeaders(withAuth: boolean = false): Headers {
     const headers = new Headers({
     });
@@ -135,16 +148,17 @@ export class ApiService {
     return text ? JSON.parse(text) : []; // Safely parse JSON
   }
 
-  async createMachine(machine: any) {
-    console.log('Creating machine:', machine);
-    const headers = this.getHeaders1(true);
+  async createMachine(formData: FormData) {
+    console.log('Creating machine:', formData);
+    const headers = this.getHeaders2(true);
 
     const url = `http://localhost:9090/machine`;
     const response = await fetch(url, {
       method: 'POST',
       headers,
-      body: JSON.stringify(machine)
+      body: formData
     });
+    console.log(response)
     return await response.json() ?? undefined;
   }
 
@@ -236,5 +250,43 @@ export class ApiService {
   
     return await response.blob(); 
   }
+
+  async getMachineImage(imagePath: string): Promise<string> {
+    const baseUrl = 'http://localhost:9090/machine/image?imagePath=';
+    const defaultImage = 'https://media.istockphoto.com/id/854012462/photo/barbell-ready-for-workout-indoors-selective-focus.jpg?s=612x612&w=0&k=20&c=lSHMTs2Rm9XPJqGVxlMjs9pr-RMWwB7lbf8E-RIARhM=';
+    const token = localStorage.getItem('token');
+    if (!imagePath) {
+        return defaultImage;
+    }
+
+    const headers = this.getHeaders2();
+
+    try {
+        const cleanedImagePath = imagePath.replace(/^uploads\//, '');
+        const encodedImagePath = encodeURIComponent(cleanedImagePath);
+        const url = `${baseUrl}${encodedImagePath}`;
+        
+        console.log('Cleaned Image Path:', cleanedImagePath);
+        console.log('Encoded Image Path:', encodedImagePath);
+        console.log('Final URL:', url);
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+        });
+
+        if (!response.ok) {
+            console.warn(`Image not found or unauthorized: ${response.status}`);
+            return defaultImage;
+        }
+
+        return url;
+    } catch (error) {
+        console.error('Error fetching image:', error);
+        return defaultImage;
+    }
+  }
+
   
 }

@@ -18,8 +18,7 @@
   <div class="row g-4">
     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let machine of machines">
       <div class="card border-danger">
-        <img src="https://media.istockphoto.com/id/854012462/photo/barbell-ready-for-workout-indoors-selective-focus.jpg?s=612x612&w=0&k=20&c=lSHMTs2Rm9XPJqGVxlMjs9pr-RMWwB7lbf8E-RIARhM=" 
-             alt="Gym Machine" class="card-img-top">
+        <img [src]="machine.resolvedImagePath" alt="Machine Image" />
         <div class="card-body text-center">
           <h5 class="card-title text-danger">{{ machine.name }}</h5>
           <p class="card-text">{{ machine.description }}</p>
@@ -39,9 +38,6 @@
         <div class="modal-body text-center">
           <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" alt="QR Code" class="img-fluid" />
           <p *ngIf="!qrCodeUrl" class="text-danger">Failed to load QR Code</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger mt-2" (click)="closeQRCodeModal()">Close</button>
         </div>
       </div>
     </div>
