@@ -1,0 +1,63 @@
+.pricing-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.pricing-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-card .card-header {
+    border-radius: 10px 10px 0 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.pricing-card .card-body {
+    padding: 30px;
+}
+
+.pricing-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.pricing-card .btn-danger {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.pricing-card .btn-danger:hover {
+    background-color: #fff;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.show-details {
+    font-size: 0.8rem;  
+    color: #ff0000;  
+    cursor: pointer;
+    text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+    transition: font-size 0.3s ease, color 0.3s ease;
+    text-decoration: none;  
+}
+
+.show-details i {
+    margin-left: 5px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.show-details:hover {
+    font-size: 0.9rem;  
+    color: #d50000;  
+}
