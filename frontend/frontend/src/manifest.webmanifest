@@ -1,0 +1,23 @@
+{
+  "name": "FIT Monitor",
+  "short_name": "FIT",
+  "theme_color": "#ff0000",
+  "background_color": "#ff0000",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/Logo.svg",
+      "sizes": "87x48",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/Logo.png",
+      "sizes": "272x150",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
