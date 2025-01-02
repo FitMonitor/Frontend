@@ -299,13 +299,13 @@ export class ApiService {
     };
 
     console.log(JSON.stringify(payload))
+
+    const headers = this.getHeaders1(true);
   
     return new Observable((observer) => {
       fetch(apiUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify(payload),
       })
         .then((response) => {
