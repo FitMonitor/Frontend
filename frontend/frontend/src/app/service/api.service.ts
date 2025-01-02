@@ -1,5 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -287,6 +288,42 @@ export class ApiService {
         return defaultImage;
     }
   }
+
+  createCheckoutSession(plan: any): Observable<any> {
+    const apiUrl= 'http://localhost:8080/api/payment/create-checkout-session';
+    const payload = {
+      amount: plan.price * 100, // Amount in cents
+      currency: 'eur', // You can customize this
+      successUrl: window.location.origin + '/payment-success',
+      cancelUrl: window.location.origin + '/payment-cancel'
+    };
+
+    console.log(JSON.stringify(payload))
+  
+    return new Observable((observer) => {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
+  
 
   
 }
