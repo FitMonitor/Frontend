@@ -74,6 +74,7 @@ export class MachineStatusComponent implements OnInit {
     } catch (error) {
       console.error('Error changing machine state:', error);
     }
+    this.loadMachines();
   }  
 
   isMachineUsedByCurrentUser(machine: any): boolean {

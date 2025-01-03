@@ -288,7 +288,7 @@ export class ApiService {
   }
 
   createCheckoutSession(plan: any): Observable<any> {
-    const apiUrl= 'http://localhost:8080/api/payment/create-checkout-session';
+    const apiUrl= 'http://localhost:8181/api/payment/create-checkout-session';
     const payload = {
       amount: plan.price * 100, // Amount in cents
       currency: 'eur', // You can customize this
@@ -325,7 +325,7 @@ export class ApiService {
   getSubscriptionDate(): Observable<string | null> {
     const headers = this.getHeaders1(true);
     return new Observable((observer) => {
-      fetch('http://localhost:8080/api/payment/user/subscriptiondate', {
+      fetch('http://localhost:8181/api/payment/user/subscriptiondate', {
         method: 'GET',
         headers,
       })
