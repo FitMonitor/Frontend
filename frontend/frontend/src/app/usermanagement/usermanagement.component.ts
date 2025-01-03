@@ -26,7 +26,7 @@ export class UsermanagementComponent implements OnInit{
   ngOnInit() {
     this.ApiDataService.getAllUsers().then((data: User[]) => {
       this.users = data;
-      console.log('Users:', this.users);
+      //console.log('Users:', this.users);
     });
   }
 

@@ -1,12 +1,14 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document, private http: HttpClient) { }
 
   isPlatformBrowser() {
     return isPlatformBrowser(this.platformId);
@@ -74,7 +76,7 @@ export class ApiService {
     });
 
     const data = await response.json();
-    console.log('Token:', data.id_token);
+    //console.log('Token:', data.id_token);
 
     return data;
   }
@@ -149,7 +151,7 @@ export class ApiService {
   }
 
   async createMachine(formData: FormData) {
-    console.log('Creating machine:', formData);
+    //console.log('Creating machine:', formData);
     const headers = this.getHeaders2(true);
 
     const url = `http://localhost:9090/machine`;
@@ -158,12 +160,12 @@ export class ApiService {
       headers,
       body: formData
     });
-    console.log(response)
+    //console.log(response)
     return await response.json() ?? undefined;
   }
 
   async sendMachineStatus(data: any) {
-    console.log('Data to send:', data);
+    //console.log('Data to send:', data);
   
     const headers = this.getHeaders1(true);
   
@@ -189,7 +191,7 @@ export class ApiService {
         result = await response.text(); // Handle plain text response
       }
   
-      console.log('Response from server:', result);
+      //console.log('Response from server:', result);
       return result;
     } catch (error) {
       console.error('Error sending machine status:', error);
@@ -223,7 +225,7 @@ export class ApiService {
         result = await response.text(); // Handle plain text response
       }
   
-      console.log('Response from server:', result);
+      //console.log('Response from server:', result);
       return result;
     } catch (error) {
       console.error('Error sending gym status:', error);
@@ -255,38 +257,92 @@ export class ApiService {
     const baseUrl = 'http://localhost:9090/machine/image?imagePath=';
     const defaultImage = 'https://media.istockphoto.com/id/854012462/photo/barbell-ready-for-workout-indoors-selective-focus.jpg?s=612x612&w=0&k=20&c=lSHMTs2Rm9XPJqGVxlMjs9pr-RMWwB7lbf8E-RIARhM=';
     const token = localStorage.getItem('token');
+  
     if (!imagePath) {
-        return defaultImage;
+      return defaultImage;
     }
-
-    const headers = this.getHeaders2();
-
+  
     try {
-        const cleanedImagePath = imagePath.replace(/^uploads\//, '');
-        const encodedImagePath = encodeURIComponent(cleanedImagePath);
-        const url = `${baseUrl}${encodedImagePath}`;
-        
-        console.log('Cleaned Image Path:', cleanedImagePath);
-        console.log('Encoded Image Path:', encodedImagePath);
-        console.log('Final URL:', url);
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        });
-
-        if (!response.ok) {
-            console.warn(`Image not found or unauthorized: ${response.status}`);
-            return defaultImage;
-        }
-
-        return url;
-    } catch (error) {
-        console.error('Error fetching image:', error);
+      const cleanedImagePath = imagePath.replace(/^uploads\//, '');
+      const encodedImagePath = encodeURIComponent(cleanedImagePath);
+      const url = `${baseUrl}${encodedImagePath}`;
+  
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        console.warn(`Image not found or unauthorized: ${response.status}`);
         return defaultImage;
+      }
+  
+      const blob = await response.blob(); // Convert response to a Blob
+      return URL.createObjectURL(blob); // Create a Blob URL
+    } catch (error) {
+      console.error('Error fetching image:', error);
+      return defaultImage;
     }
   }
 
+  createCheckoutSession(plan: any): Observable<any> {
+    const apiUrl= 'http://localhost:8181/api/payment/create-checkout-session';
+    const payload = {
+      amount: plan.price * 100, // Amount in cents
+      currency: 'eur', // You can customize this
+      successUrl: window.location.origin + '/payment-success',
+      cancelUrl: window.location.origin + '/payment-cancel'
+    };
+
+    //console.log(JSON.stringify(payload))
+
+    const headers = this.getHeaders1(true);
+  
+    return new Observable((observer) => {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
+  
+  getSubscriptionDate(): Observable<string | null> {
+    const headers = this.getHeaders1(true);
+    return new Observable((observer) => {
+      fetch('http://localhost:8181/api/payment/user/subscriptiondate', {
+        method: 'GET',
+        headers,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then((data) => {
+          observer.next(data); 
+          observer.complete();
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
   
 }

@@ -17,16 +17,7 @@ import {ApiService} from "../service/api.service";
   selector: 'app-addmachinemodal',
   standalone: true,
   imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    MatRadioGroup,
-    MatRadioButton,
-    MatDialogActions,
-    MatButton,
-    MatLabel
+    ReactiveFormsModule
   ],
   templateUrl: './addmachinemodal.component.html',
   styleUrl: './addmachinemodal.component.css'
@@ -34,6 +25,7 @@ import {ApiService} from "../service/api.service";
 export class AddmachinemodalComponent {
   machineForm!: FormGroup;
   selectedFile: File | null = null;
+  selectedFileName: string | null = null;
 
   constructor( private fb: FormBuilder, private apiService:ApiService,private dialogRef: MatDialogRef<AddmachinemodalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.machineForm = this.fb.group({
@@ -64,11 +56,6 @@ export class AddmachinemodalComponent {
       console.warn('No image file selected');
     }
   
-    // Debugging the FormData contents
-    console.log('FormData contents:');
-    formData.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
   
     try {
       const newMachine = await this.apiService.createMachine(formData);
@@ -90,5 +77,13 @@ export class AddmachinemodalComponent {
   onCancel(){
     this.dialogRef.close();
   }
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+  
 
 }

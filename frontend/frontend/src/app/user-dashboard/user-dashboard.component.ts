@@ -35,7 +35,7 @@ export class UserDashboardComponent implements OnInit {
   async fetchGymOccupancy() {
     try {
       this.gymOccupancy = await this.apiService.getGymOccupancy();
-      console.log('Gym occupancy:', this.gymOccupancy);
+      //console.log('Gym occupancy:', this.gymOccupancy);
     } catch (error) {
       console.error('Error fetching gym occupancy:', error);
     }

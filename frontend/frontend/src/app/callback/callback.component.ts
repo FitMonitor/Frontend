@@ -26,37 +26,29 @@ export class CallbackComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const code = params['code']; 
       if (code && !this.isTokenFetched) { // Check the flag to prevent multiple calls
-        console.log('Received code:', code);
         this.isTokenFetched = true; // Set flag to true to prevent multiple API calls
 
         this.apiService.gettoken(code)
           .then(response => {
-            console.log('response:', response);
 
             this.roles = response.roles;
-            console.log('Roles:', this.roles);
             // Parse the token string into a JSON object
             const tokenObject = JSON.parse(response.token);
 
             this.token = tokenObject.id_token; // Use the parsed token object
-            console.log('Is platform browser:', isPlatformBrowser(this.platformId));
             
             const localStorage = this.document.defaultView?.localStorage;
             if (localStorage) {
               localStorage.setItem('token', this.token); // Save the id_token
               localStorage.setItem('roles', JSON.stringify(this.roles)); // Save the roles
-              console.log('Token saved in localStorage');
-              console.log('Token:', this.token);
             } else {
               console.warn('localStorage is not available. Token cannot be saved.');
             }
 
 
             if (this.roles.includes('Admin')) {
-              console.log('Redirecting to usermanagement page...');
               this.router.navigate(['/admin-dashboard']);
             } else if (this.roles.includes('User')) {
-              console.log('Redirecting to user-dashboard page...');
               this.router.navigate(['/user-dashboard']);
             } else {
               console.error('No role found in the token');

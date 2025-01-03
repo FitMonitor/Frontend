@@ -4,6 +4,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { ApiService } from '../service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr-code',
@@ -14,15 +16,20 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class QrCodeComponent implements OnInit {
   qrCodeImageUrl: string | null = null;
+  hasSubscription: boolean | null = null; 
+  loading: boolean = true; 
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private apiService: ApiService,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document 
   ) {}
 
   ngOnInit(): void {
     this.generateQRCode(); 
+    this.checkSubscription();
   }
 
   generateQRCode(): void {
@@ -59,6 +66,29 @@ export class QrCodeComponent implements OnInit {
     } else {
       console.warn('localStorage is not available.');
     }
+  }
+
+  checkSubscription(): void {
+    this.apiService.getSubscriptionDate().subscribe({
+      next: (subscriptionDate) => {
+        if (subscriptionDate) {
+          this.hasSubscription = true;
+          this.generateQRCode(); 
+        } else {
+          this.hasSubscription = false;
+        }
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Erro ao verificar subscrição:', err);
+        this.hasSubscription = false;
+        this.loading = false;
+      },
+    });
+  }
+
+  redirectToPayments(): void {
+    this.router.navigate(['/payment']); 
   }
   
 }
