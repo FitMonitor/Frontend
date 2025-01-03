@@ -6,10 +6,13 @@ export class MachineStatusService {
 
   async getMachines() {
     const url = `${this.baseUrl}/all`;
+    const token = localStorage.getItem('token');
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
     });
 

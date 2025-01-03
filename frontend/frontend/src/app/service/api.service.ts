@@ -257,36 +257,33 @@ export class ApiService {
     const baseUrl = 'http://localhost:9090/machine/image?imagePath=';
     const defaultImage = 'https://media.istockphoto.com/id/854012462/photo/barbell-ready-for-workout-indoors-selective-focus.jpg?s=612x612&w=0&k=20&c=lSHMTs2Rm9XPJqGVxlMjs9pr-RMWwB7lbf8E-RIARhM=';
     const token = localStorage.getItem('token');
+  
     if (!imagePath) {
-        return defaultImage;
+      return defaultImage;
     }
-
-    const headers = this.getHeaders2();
-
+  
     try {
-        const cleanedImagePath = imagePath.replace(/^uploads\//, '');
-        const encodedImagePath = encodeURIComponent(cleanedImagePath);
-        const url = `${baseUrl}${encodedImagePath}`;
-        
-        console.log('Cleaned Image Path:', cleanedImagePath);
-        console.log('Encoded Image Path:', encodedImagePath);
-        console.log('Final URL:', url);
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        });
-
-        if (!response.ok) {
-            console.warn(`Image not found or unauthorized: ${response.status}`);
-            return defaultImage;
-        }
-
-        return url;
-    } catch (error) {
-        console.error('Error fetching image:', error);
+      const cleanedImagePath = imagePath.replace(/^uploads\//, '');
+      const encodedImagePath = encodeURIComponent(cleanedImagePath);
+      const url = `${baseUrl}${encodedImagePath}`;
+  
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        console.warn(`Image not found or unauthorized: ${response.status}`);
         return defaultImage;
+      }
+  
+      const blob = await response.blob(); // Convert response to a Blob
+      return URL.createObjectURL(blob); // Create a Blob URL
+    } catch (error) {
+      console.error('Error fetching image:', error);
+      return defaultImage;
     }
   }
 
