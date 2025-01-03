@@ -10,4 +10,14 @@ import { NavbarComponent } from "../navbar/navbar.component";
 })
 export class HomePageComponent {
 
+  constructor() { }
+
+  //remove token and role from local storage on init
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('roles');
+  }
+
+
+
 }
