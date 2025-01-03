@@ -12,6 +12,8 @@ import { QrCodeScannerEntranceComponent } from './qr-code-scanner-entrance/qr-co
 import { MachineStatusComponent} from './machine-status/machine-status.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { MembershipPlansComponent } from './membership-plans/membership-plans.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 export const routes: Routes = [
     { path: 'callback', component: CallbackComponent },
@@ -25,7 +27,10 @@ export const routes: Routes = [
     {path:'qr-code-entrance',component:QrCodeScannerEntranceComponent},
     {path: "machine-status", component:MachineStatusComponent},
     {path: 'check-in', component: QrCodeComponent},
-    {path: 'payment', component: MembershipPlansComponent}
+    {path: 'payment', component: MembershipPlansComponent},
+    {path: 'payment-success',component:PaymentSuccessComponent},
+    {path: 'payment-failure',component:PaymentFailureComponent}
+
 
 ];
 
