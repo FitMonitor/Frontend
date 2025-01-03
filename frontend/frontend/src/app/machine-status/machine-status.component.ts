@@ -66,7 +66,6 @@ export class MachineStatusComponent implements OnInit {
       const isChanged = await this.machineStatusService.changeMachineState(machineId, intention);
   
       if (isChanged) {
-        console.log('Machine state updated successfully!');
         this.machines = await this.machineStatusService.getMachines();
       } else {
         console.error('Failed to change machine state');

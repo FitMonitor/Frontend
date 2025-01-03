@@ -76,7 +76,7 @@ export class ApiService {
     });
 
     const data = await response.json();
-    console.log('Token:', data.id_token);
+    //console.log('Token:', data.id_token);
 
     return data;
   }
@@ -151,7 +151,7 @@ export class ApiService {
   }
 
   async createMachine(formData: FormData) {
-    console.log('Creating machine:', formData);
+    //console.log('Creating machine:', formData);
     const headers = this.getHeaders2(true);
 
     const url = `http://localhost:9090/machine`;
@@ -160,12 +160,12 @@ export class ApiService {
       headers,
       body: formData
     });
-    console.log(response)
+    //console.log(response)
     return await response.json() ?? undefined;
   }
 
   async sendMachineStatus(data: any) {
-    console.log('Data to send:', data);
+    //console.log('Data to send:', data);
   
     const headers = this.getHeaders1(true);
   
@@ -191,7 +191,7 @@ export class ApiService {
         result = await response.text(); // Handle plain text response
       }
   
-      console.log('Response from server:', result);
+      //console.log('Response from server:', result);
       return result;
     } catch (error) {
       console.error('Error sending machine status:', error);
@@ -225,7 +225,7 @@ export class ApiService {
         result = await response.text(); // Handle plain text response
       }
   
-      console.log('Response from server:', result);
+      //console.log('Response from server:', result);
       return result;
     } catch (error) {
       console.error('Error sending gym status:', error);
@@ -296,7 +296,7 @@ export class ApiService {
       cancelUrl: window.location.origin + '/payment-cancel'
     };
 
-    console.log(JSON.stringify(payload))
+    //console.log(JSON.stringify(payload))
 
     const headers = this.getHeaders1(true);
   

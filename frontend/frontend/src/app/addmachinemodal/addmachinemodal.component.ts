@@ -56,11 +56,6 @@ export class AddmachinemodalComponent {
       console.warn('No image file selected');
     }
   
-    // Debugging the FormData contents
-    console.log('FormData contents:');
-    formData.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
   
     try {
       const newMachine = await this.apiService.createMachine(formData);
