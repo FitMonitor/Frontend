@@ -1,5 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document, private http: HttpClient) { }
 
   isPlatformBrowser() {
     return isPlatformBrowser(this.platformId);
@@ -324,6 +325,27 @@ export class ApiService {
     });
   }
   
-
+  getSubscriptionDate(): Observable<string | null> {
+    const headers = this.getHeaders1(true);
+    return new Observable((observer) => {
+      fetch('http://localhost:8080/api/payment/user/subscriptiondate', {
+        method: 'GET',
+        headers,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then((data) => {
+          observer.next(data); 
+          observer.complete();
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
   
 }

@@ -12,14 +12,21 @@
             <h1 class="display-4">Gym Check-In & Check-Out</h1>
             <p class="lead">Scan the QR Code to log your entry or exit at the gym.</p>
 
-            <div *ngIf="qrCodeImageUrl; else loading">
-                <img [src]="qrCodeImageUrl" alt="QR Code" class="img-fluid rounded" />
-            </div>
-            <ng-template #loading>
+            <div *ngIf="loading">
                 <div class="spinner-border text-danger" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-            </ng-template>
+            </div>
+
+            <div *ngIf="!loading && hasSubscription === false" class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">No Active Subscription</h4>
+                <p>You currently do not have an active subscription. Please subscribe to access the gym services.</p>
+                <button class="btn btn-danger" (click)="redirectToPayments()">Pay Now</button>
+            </div>
+
+            <div *ngIf="!loading && hasSubscription === true">
+                <img [src]="qrCodeImageUrl" alt="QR Code" class="img-fluid rounded" />
+            </div>
         </div>
     </section>
 </div>

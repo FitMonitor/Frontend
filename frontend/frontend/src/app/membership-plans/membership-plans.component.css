@@ -42,22 +42,27 @@
 }
 
 .show-details {
-    font-size: 0.8rem;  
-    color: #ff0000;  
+    font-size: 0.8rem;
+    color: #ff0000;
     cursor: pointer;
     text-transform: capitalize;
     display: inline-flex;
     align-items: center;
     transition: font-size 0.3s ease, color 0.3s ease;
-    text-decoration: none;  
+    text-decoration: none;
 }
 
 .show-details i {
     margin-left: 5px;
-    transition: transform 0.3s ease-in-out; 
+    transition: transform 0.3s ease-in-out;
 }
 
 .show-details:hover {
-    font-size: 0.9rem;  
-    color: #d50000;  
+    font-size: 0.9rem;
+    color: #d50000;
 }
+
+
+
+
+

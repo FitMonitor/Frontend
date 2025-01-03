@@ -3,10 +3,28 @@
 
 <app-navbar></app-navbar>
 
-<div class="container-fluid p-0" style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh; overflow-x: hidden;">
+<div class="container-fluid p-0"
+    style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh; overflow-x: hidden;">
     <div class="container text-center py-5">
         <h1 class="text-white mb-5">Choose Your Plan</h1>
-        <div class="row justify-content-center">
+
+        <div *ngIf="loading" class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div *ngIf="!loading && subscriptionStatus === 'active'" class="alert alert-success text-center mt-4" role="alert">
+            <h4 class="alert-heading">Subscription Active</h4>
+            <p>Your subscription is active until <strong>{{ subscriptionDate }}</strong>.</p>
+        </div>
+
+        <div *ngIf="!loading && subscriptionStatus === 'inactive'" class="alert alert-danger text-center mt-4" role="alert">
+            <h4 class="alert-heading">No Active Subscription</h4>
+            <p>You currently do not have an active subscription. Choose a plan below to subscribe.</p>
+        </div>
+
+        <div class="row justify-content-center mt-5">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let plan of plans">
                 <div class="card pricing-card">
                     <div class="card-header text-white bg-danger py-2">
@@ -15,15 +33,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ plan.title }}</h5>
                         <p class="card-text">{{ plan.description }}</p>
-                        <button 
-                            class="btn btn-link text-danger p-0 show-details" 
-                            type="button" 
-                            data-bs-toggle="collapse" 
-                            [attr.data-bs-target]="'#details-' + plan.title.replace(' ', '-')"
+
+                        <button class="btn btn-link text-danger p-0 show-details" type="button"
+                            data-bs-toggle="collapse" [attr.data-bs-target]="'#details-' + plan.title.replace(' ', '-')"
                             aria-expanded="false">
                             Show more details
                             <i class="fas fa-chevron-down ms-2"></i>
                         </button>
+
                         <div class="collapse mt-3" [id]="'details-' + plan.title.replace(' ', '-')">
                             <ul class="list-unstyled">
                                 <li *ngFor="let feature of plan.features">
@@ -31,7 +48,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <button class="btn btn-danger mt-3" (click)="selectPlan(plan)">Select Plan</button>
+
+                        <div class="d-flex justify-content-center mt-3">
+                            <button class="btn btn-danger" (click)="selectPlan(plan)">Select Plan</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,11 +60,3 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-
-
-
-
