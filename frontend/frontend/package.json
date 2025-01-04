@@ -24,6 +24,7 @@
     "@angular/router": "^17.0.0",
     "@angular/service-worker": "^17.0.0",
     "@angular/ssr": "^17.0.6",
+    "@auth0/angular-jwt": "^5.2.0",
     "@aws-amplify/auth": "^6.5.1",
     "@aws-amplify/ui-angular": "^5.0.28",
     "@zxing/browser": "^0.1.5",

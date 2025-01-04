@@ -4,123 +4,11 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid p-0"
-    style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh; height: 100%; overflow-x: hidden;">
-
-    <!--<div *ngIf="message" class="alert alert-info text-center mt-3">
-        {{ message }}
-      </div>-->
+    style="background: url('assets/background.png') no-repeat center center; background-size: cover; min-height: 100vh;">
 
     <section class="dashboard-section py-5">
         <div class="container">
-
-            <div id="cardCarousel" class="carousel slide d-md-none" data-bs-ride="carousel" style="min-height: 100vh;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card text-center border-danger card-custom">
-                                    <div class="card-body" *ngIf="gymOccupancy">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-dumbbell fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Gym Availability</h5>
-                                        <p class="card-text">
-                                            <strong> {{ gymOccupancy }} / 100 </strong> people currently inside.
-                                        </p>
-                                        <a href="#" class="btn btn-danger">View</a>
-                                        <div class="progress-container">
-                                            <div class="progress-bar" [ngStyle]="{
-                                                    width: calculateOccupancyPercentage() + '%',
-                                                    backgroundColor: calculateColor()
-                                                }"></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body" *ngIf="!gymOccupancy">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-dumbbell fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Gym Availability</h5>
-                                        <p class="card-text">
-                                            Loading gym occupancy...
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card text-center border-danger card-custom">
-                                    <div class="card-body">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-check-circle fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Check In</h5>
-                                        <p class="card-text">
-                                            Easy your Qr_Code to check in and check out.
-                                        </p>
-                                        <a href="/check-in" class="btn btn-danger">Check In</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card text-center border-danger card-custom">
-                                    <div class="card-body">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-cogs fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Gym Machines</h5>
-                                        <p class="card-text">
-                                            Check the availability of gym machines.
-                                        </p>
-                                        <a href="/machine-status" class="btn btn-danger">Check Availability</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card text-center border-danger card-custom">
-                                    <div class="card-body">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-credit-card fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Select Your Payment Plan</h5>
-                                        <p class="card-text">
-                                            Choose your plan and proceed with payment securely.
-                                        </p>
-                                        <a href="/payment" class="btn btn-danger">Pay Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card text-center border-danger card-custom">
-                                    <div class="card-body">
-                                        <div class="icon-container mb-3">
-                                            <i class="fas fa-qrcode fa-3x text-danger"></i>
-                                        </div>
-                                        <h5 class="card-title">Scan QR Code</h5>
-                                        <p class="card-text">
-                                            Scan QR codes of gym machines.
-                                        </p>
-                                        <a href="/qr-code-scanner" class="btn btn-danger">Scan</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <div class="row d-none d-md-flex justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center border-danger card-custom">
                         <div class="card-body" *ngIf="gymOccupancy">
@@ -131,7 +19,6 @@
                             <p class="card-text">
                                 <strong> {{ gymOccupancy }} / 100 </strong> people currently inside.
                             </p>
-                            <a href="#" class="btn btn-danger">View</a>
                             <div class="progress-container">
                                 <div class="progress-bar" [ngStyle]="{
                                         width: calculateOccupancyPercentage() + '%',
@@ -139,29 +26,20 @@
                                     }"></div>
                             </div>
                         </div>
-                        <div class="card-body" *ngIf="!gymOccupancy">
-                            <div class="icon-container mb-3">
-                                <i class="fas fa-dumbbell fa-3x text-danger"></i>
-                            </div>
-                            <h5 class="card-title">Gym Availability</h5>
-                            <p class="card-text">
-                                Loading gym occupancy...
-                            </p>
-                        </div>
                     </div>
                 </div>
-
+                
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center border-danger card-custom">
                         <div class="card-body">
                             <div class="icon-container mb-3">
                                 <i class="fas fa-check-circle fa-3x text-danger"></i>
                             </div>
-                            <h5 class="card-title">Gym Check-In & Check-Out</h5>
+                            <h5 class="card-title">Check In</h5>
                             <p class="card-text">
-                                QR Code to log your entry/exit at the gym.
+                                Easy your Qr_Code to check in and check out.
                             </p>
-                            <a href="./check-in" class="btn btn-danger">Check In</a>
+                            <a href="/check-in" class="btn btn-danger">Check In</a>
                         </div>
                     </div>
                 </div>
@@ -180,9 +58,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row d-none d-md-flex justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center border-danger card-custom">
                         <div class="card-body">
@@ -196,7 +72,8 @@
                             <a href="/payment" class="btn btn-danger">Pay Now</a>
                         </div>
                     </div>
-                </div>                
+                </div>
+
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card text-center border-danger card-custom">
                         <div class="card-body">
@@ -212,7 +89,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 </div>
