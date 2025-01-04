@@ -12,6 +12,10 @@ import { QrCodeScannerEntranceComponent } from './qr-code-scanner-entrance/qr-co
 import { MachineStatusComponent} from './machine-status/machine-status.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { authGuard } from './auth.guard';
+import { MembershipPlansComponent } from './membership-plans/membership-plans.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 export const routes: Routes = [
     { path: 'callback', component: CallbackComponent },
@@ -25,6 +29,11 @@ export const routes: Routes = [
     {path:'qr-code-entrance',component:QrCodeScannerEntranceComponent, canActivate: [authGuard], data: { roles: ['Admin'] }},
     {path: "machine-status", component:MachineStatusComponent, canActivate: [authGuard], data: { roles: ['User'] }},
     {path: 'check-in', component: QrCodeComponent, canActivate: [authGuard], data: { roles: ['User'] }},
+    {path: 'payment', component: MembershipPlansComponent, canActivate: [authGuard], data: { roles: ['User'] }},
+    {path: 'payment-success',component:PaymentSuccessComponent, canActivate: [authGuard], data: { roles: ['User'] }},
+    {path: 'payment-failure',component:PaymentFailureComponent, canActivate: [authGuard], data: { roles: ['User'] }},
+    {path: 'about-us',component:AboutUsComponent}
+
 
 ];
 

@@ -45,6 +45,9 @@ export class QrCodeScannerComponent implements OnInit, OnDestroy {
               message = "You are now using the machine";
             } else if (response == "User already using a machine") {
               message = "You are already using a machine";
+            } 
+            else if(response == "User not in gym"){
+              message = "You are not in the gym";
             } else {
               message = "Unexpected response from the server.";
             }
@@ -52,7 +55,7 @@ export class QrCodeScannerComponent implements OnInit, OnDestroy {
             // Redirect to the homepage with the message
             this.router.navigate(['/machine-status'], { state: { message: message } });
 
-            console.log('Message:', message);
+            //console.log('Message:', message);
           })
           .catch((error) => {
             console.error('Error occurred:', error);

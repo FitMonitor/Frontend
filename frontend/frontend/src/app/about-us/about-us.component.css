@@ -1,0 +1,82 @@
+
+.about-us-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4rem 2rem;
+}
+
+.about-us-container h1, 
+.about-us-container h2 {
+    font-weight: bold;
+}
+
+.app-name {
+    color: #ff0000; 
+    font-weight: bold;
+}
+
+.card-img-top {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    margin: 0 auto;
+    border: 5px solid #fff;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.card-body h5 {
+    font-weight: bold;
+}
+
+.btn-outline-light {
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: white;
+    color: black;
+} 
+
+/**/
+
+.vision-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4rem 2rem;
+    min-height: 100vh;
+}
+
+.vision-container h1,
+.vision-container h2,
+.vision-container h4 {
+    font-weight: bold;
+}
+
+.app-name {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.feature-card h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.future-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.future-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
