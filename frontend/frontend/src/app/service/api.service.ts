@@ -10,6 +10,8 @@ export class ApiService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document, private http: HttpClient) { }
 
+  baseUrl = 'https://bnfm9a8mic.execute-api.eu-north-1.amazonaws.com/default';
+
   isPlatformBrowser() {
     return isPlatformBrowser(this.platformId);
   }
@@ -63,7 +65,7 @@ export class ApiService {
 
   async gettoken(code: string) {
     // Construct the GET request URL with the code parameter
-    const url = `http://localhost:8080/api/token/get?code=${code}`;
+    const url = this.baseUrl + `/api/token/get?code=${code}`;
 
     const headers = new Headers({
       'Content-Type': 'text/plain',
@@ -83,7 +85,7 @@ export class ApiService {
 
 
   async getAllUsers() {
-    const url = `https://eyc1h7rd28.execute-api.eu-north-1.amazonaws.com/qa/getAllUsers`;
+    const url = `https://bnfm9a8mic.execute-api.eu-north-1.amazonaws.com/default/GetAllUsers`;
 
     const headers = this.getHeaders(true);
 
@@ -96,7 +98,7 @@ export class ApiService {
   }
 
   async changeUserRole(userId: string, groupName: string, action: string) {
-    const url = `https://kfgnjxm7l2.execute-api.eu-north-1.amazonaws.com/default/addusertogroup`;
+    const url = `https://bnfm9a8mic.execute-api.eu-north-1.amazonaws.com/default/AddUserToGroup`;
 
     const headers = this.getHeaders(true);
 
@@ -114,7 +116,7 @@ export class ApiService {
   }
   
   async getGymOccupancy() {
-    const url = `http://localhost:9090/api/gyms/occupancy?id=1`;
+    const url = this.baseUrl + `/api/gyms/occupancy?id=1`;
 
     const headers = this.getHeaders(true);
 
@@ -131,7 +133,7 @@ export class ApiService {
   }
 
   async getMachines() {
-    const url = `http://localhost:9090/machine/all`;
+    const url = this.baseUrl + `/api/gyms/machine/all`;
     const headers = this.getHeaders(true);
 
     const response = await fetch(url, {
@@ -154,7 +156,7 @@ export class ApiService {
     //console.log('Creating machine:', formData);
     const headers = this.getHeaders2(true);
 
-    const url = `http://localhost:9090/machine`;
+    const url = this.baseUrl + `/api/gyms/machine`;
     const response = await fetch(url, {
       method: 'POST',
       headers,
@@ -169,7 +171,7 @@ export class ApiService {
   
     const headers = this.getHeaders1(true);
   
-    const url = 'http://localhost:8080/api/qr/machine';
+    const url = this.baseUrl + '/api/qr/machine';
   
     try {
       const response = await fetch(url, {
@@ -203,7 +205,7 @@ export class ApiService {
   
     const headers = this.getHeaders1(true);
   
-    const url = 'http://localhost:8080/api/qr/gym_entrance';
+    const url = this.baseUrl + '/api/qr/gym_entrance';
   
     try {
       const response = await fetch(url, {
@@ -234,7 +236,7 @@ export class ApiService {
   }
 
   async getMachineQRCode(machineId: string): Promise<Blob | null> {
-    const url = `http://localhost:8080/api/qrcode/generate-machine`;
+    const url = this.baseUrl + `/api/qr/generate-machine`;
     const token = localStorage.getItem('token');
     const response = await fetch(url, {
       method: 'POST',
@@ -254,7 +256,7 @@ export class ApiService {
   }
 
   async getMachineImage(imagePath: string): Promise<string> {
-    const baseUrl = 'http://localhost:9090/machine/image?imagePath=';
+    const baseUrl1 = this.baseUrl + '/api/gyms/machine/image?imagePath=';
     const defaultImage = 'https://media.istockphoto.com/id/854012462/photo/barbell-ready-for-workout-indoors-selective-focus.jpg?s=612x612&w=0&k=20&c=lSHMTs2Rm9XPJqGVxlMjs9pr-RMWwB7lbf8E-RIARhM=';
     const token = localStorage.getItem('token');
   
@@ -265,7 +267,7 @@ export class ApiService {
     try {
       const cleanedImagePath = imagePath.replace(/^uploads\//, '');
       const encodedImagePath = encodeURIComponent(cleanedImagePath);
-      const url = `${baseUrl}${encodedImagePath}`;
+      const url = `${baseUrl1}${encodedImagePath}`;
   
       const response = await fetch(url, {
         method: 'GET',
@@ -288,7 +290,7 @@ export class ApiService {
   }
 
   createCheckoutSession(plan: any): Observable<any> {
-    const apiUrl= 'http://localhost:8181/api/payment/create-checkout-session';
+    const apiUrl= this.baseUrl + '/api/payments/create-checkout-session';
     const payload = {
       amount: plan.price * 100, // Amount in cents
       currency: 'eur', // You can customize this
@@ -325,7 +327,7 @@ export class ApiService {
   getSubscriptionDate(): Observable<string | null> {
     const headers = this.getHeaders1(true);
     return new Observable((observer) => {
-      fetch('http://localhost:8181/api/payment/user/subscriptiondate', {
+      fetch(this.baseUrl + '/api/payments/user/subscriptiondate', {
         method: 'GET',
         headers,
       })

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class MachineStatusService {
-  baseUrl = 'http://localhost:9090/machine';
+  baseUrl = 'https://bnfm9a8mic.execute-api.eu-north-1.amazonaws.com/default';
+
 
   async getMachines() {
-    const url = `${this.baseUrl}/all`;
+    const url = `${this.baseUrl}/api/gyms/machine/all`;
     const token = localStorage.getItem('token');
 
     const response = await fetch(url, {
@@ -26,7 +27,7 @@ export class MachineStatusService {
   }
 
   async changeMachineState(machineId: number, intention: 'use' | 'leave'): Promise<boolean> {
-    const url = `http://localhost:8080/api/qr/machine`;
+    const url = this.baseUrl + `/api/qr/machine`;
     const token = localStorage.getItem('token');
     const response = await fetch(url, {
       method: 'POST',

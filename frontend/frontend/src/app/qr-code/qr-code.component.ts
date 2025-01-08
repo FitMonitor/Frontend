@@ -50,7 +50,7 @@ export class QrCodeComponent implements OnInit {
       const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
   
       this.http
-        .post('http://localhost:8080/api/qrcode/generate', { token }, { headers, responseType: 'blob' })
+        .post('https://bnfm9a8mic.execute-api.eu-north-1.amazonaws.com/default/api/qr/generate', { token }, { headers, responseType: 'blob' })
         .subscribe({
           next: (blob) => {
             const reader = new FileReader();
