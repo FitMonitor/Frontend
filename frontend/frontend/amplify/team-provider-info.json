@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fitmonitor-dev-77f61-authRole",
+      "UnauthRoleArn": "arn:aws:iam::241533145233:role/amplify-fitmonitor-dev-77f61-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::241533145233:role/amplify-fitmonitor-dev-77f61-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-fitmonitor-dev-77f61-deployment",
+      "UnauthRoleName": "amplify-fitmonitor-dev-77f61-unauthRole",
+      "StackName": "amplify-fitmonitor-dev-77f61",
+      "StackId": "arn:aws:cloudformation:eu-north-1:241533145233:stack/amplify-fitmonitor-dev-77f61/abd3c150-87fa-11ef-add9-06c5a4b4fb41",
+      "AmplifyAppId": "dtkpbiv8ky6we"
+    },
+    "categories": {
+      "auth": {
+        "fitmonitorf1f894a5": {}
+      }
+    }
+  }
+}

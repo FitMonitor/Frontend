@@ -1,0 +1,31 @@
+.qr-code-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.qr-code-image {
+  margin-top: 20px;
+}
+
+img {
+  max-width: 300px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.btn-danger {
+  background-color: #ff0000;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #fff;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}

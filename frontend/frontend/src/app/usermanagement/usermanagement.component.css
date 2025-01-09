@@ -1,0 +1,76 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.user-card {
+  background-color: white;
+  border: 2px solid #f00;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.user-card:hover {
+  transform: translateY(-10px); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.user-card h3 {
+  font-size: 1.2rem;
+  color: #f00;
+  margin-bottom: 15px;
+}
+
+.user-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.role-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #f00;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.role-buttons button.has-role {
+  background-color: #f00;
+  color: white;
+}
+
+.role-buttons button.has-role:hover {
+  background-color: white;
+  color: #f00;
+}
+
+.role-buttons button.no-role {
+  background-color: white;
+  color: #f00;
+}
+
+.role-buttons button.no-role:hover {
+  background-color: #f00;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    width: 100%;
+    padding: 15px;
+  }
+}

@@ -1,0 +1,57 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<app-admin-navbar></app-admin-navbar>
+
+<div class="container py-5">
+  <div class="row align-items-center mb-4">
+    <div class="col-12 col-md-8">
+      <h2 class="text-danger">Machines List</h2>
+    </div>
+    <div class="col-12 col-md-4 text-md-end">
+      <button (click)="openModal()" class="btn btn-danger">
+        <i class="fas fa-plus me-2"></i>Add Machine
+      </button>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let machine of machines">
+      <div class="card border-danger position-relative">
+        <!-- Delete Button -->
+        <button 
+          class="btn btn-sm btn-outline-danger position-absolute top-0 start-0 m-2" 
+          (click)="deleteMachine(machine.id)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        
+        <img [src]="machine.resolvedImagePath" alt="Machine Image" />
+        <div class="card-body text-center">
+          <h5 class="card-title text-danger">{{ machine.name }}</h5>
+          <p class="card-text">{{ machine.description }}</p>
+          <button class="btn btn-danger mt-2" (click)="showQRCode(machine)">Show QR Code</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade show" tabindex="-1" *ngIf="showModal" style="display: block;" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="text-danger">QR Code for {{ selectedMachine?.name }}</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeQRCodeModal()"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" alt="QR Code" class="img-fluid" />
+          <p *ngIf="!qrCodeUrl" class="text-danger">Failed to load QR Code</p>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+

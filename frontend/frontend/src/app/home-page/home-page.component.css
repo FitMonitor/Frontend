@@ -1,0 +1,43 @@
+.hero-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #333; /* Para garantir uma cor de fundo sólida */
+    padding: 20px; /* Para dar um pouco de padding ao redor */
+    position: relative; /* Para criar o efeito de sombra abaixo */
+}
+
+.hero-text {
+    font-size: 3.5rem; /* Grande tamanho de fonte para a frase */
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Para aumentar o espaçamento entre as letras */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Sombra para destacar o texto */
+    line-height: 1.2; /* Aumentar a altura da linha para tornar o texto mais espaçado */
+    animation: fadeInUp 2s ease-in-out; /* Adiciona uma animação para o texto aparecer suavemente */
+}
+
+.hero-text .highlight {
+    color: #ff0000;
+    text-decoration: underline; 
+}
+
+.hero-section:hover .hero-text {
+    color: #ffffff;
+    text-shadow: 3px 3px 15px rgba(255, 0, 0, 0.8); 
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

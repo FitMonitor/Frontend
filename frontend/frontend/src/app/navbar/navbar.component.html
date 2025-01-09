@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/Logo.svg" alt="Fit Monitor Logo" width="70" height="70" class="me-2">FIT Monitor
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="user-dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about-us">About Us</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
+                    <a class="nav-link" href="check-in">Check-in & Check-out</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
+                    <a class="nav-link" href="machine-status">Machines</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn && roles.includes('User')">
+                    <a class="nav-link" href="qr-code-scanner">Scan Machine QR Code</a>
+                </li>
+                
+                <li class="nav-item" *ngIf="isLoggedIn && showToggleButton()">
+                    <button class="btn btn-primary" (click)="toggleView()">
+                        {{ 'Switch to Admin View' }}
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" (click)="handleAuthAction()">
+                        {{ isLoggedIn ? 'Log Out' : 'Log In / Sign Up' }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
