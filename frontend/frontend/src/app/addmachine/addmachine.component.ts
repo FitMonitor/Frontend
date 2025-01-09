@@ -53,6 +53,21 @@ export class AddMachineComponent implements OnInit {
     }
   }
 
+  async deleteMachine(id: number | undefined): Promise<void> {
+      try {
+        if (id !== undefined) {
+          await this.apiService.deleteMachine(id);
+        } else {
+          console.error('Machine ID is undefined.');
+        }
+        this.machines = this.machines.filter(machine => machine.id !== id);
+      } catch (err: any) {
+        console.error('Error deleting machine:', err);
+        alert('Failed to delete machine');
+      }
+  }
+  
+
   openModal() {
     const dialogRef = this.dialog.open(AddmachinemodalComponent, {
       width: '400px'

@@ -57,7 +57,7 @@ export class AdminNavbarComponent {
 
   // Redirects to login (Cognito or other provider)
   login(): void {
-    window.location.href = 'https://identity-server.auth.eu-north-1.amazoncognito.com/login?client_id=4drvtgvmv7kvk465ctcktp6e4f&response_type=code&scope=email+openid&redirect_uri=http://localhost:4200/callback';
+    window.location.href = 'https://identity-server.auth.eu-north-1.amazoncognito.com/login?client_id=4drvtgvmv7kvk465ctcktp6e4f&response_type=code&scope=email+openid&redirect_uri=https://es-ua.ddns.net/callback';
   }
 
   // Toggle login/logout based on current state

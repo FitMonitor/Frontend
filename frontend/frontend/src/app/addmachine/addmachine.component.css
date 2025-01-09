@@ -12,14 +12,14 @@
 }
 
 .btn-danger {
-  background-color: #ff0000;
-  border-color: #ff0000;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
 }
 
 .btn-danger:hover {
-  background-color: #ffffff;
-  color: #ff0000;
-  border-color: #ff0000;
+  background-color: #c82333;
+  border-color: #bd2130;
 }
 
 .btn-outline-danger {
@@ -37,6 +37,7 @@
   border-radius: 0.375rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .card:hover {
@@ -54,6 +55,10 @@
 .card-text {
   font-size: 0.9rem;
   color: #6c757d;
+}
+
+.position-absolute {
+  z-index: 1;
 }
 
 .row.g-4 {

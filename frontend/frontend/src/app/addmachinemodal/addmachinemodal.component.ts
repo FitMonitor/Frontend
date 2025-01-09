@@ -12,12 +12,14 @@ import {MatInput} from "@angular/material/input";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {MatButton} from "@angular/material/button";
 import {ApiService} from "../service/api.service";
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-addmachinemodal',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './addmachinemodal.component.html',
   styleUrl: './addmachinemodal.component.css'
@@ -35,9 +37,14 @@ export class AddmachinemodalComponent {
     });
   }
 
+  isSaveAttempted = false;
+
+
   async save(): Promise<void> {
-    if (this.machineForm.invalid) {
-      console.error('Form is invalid');
+    this.isSaveAttempted = true; // Mark save attempt for validation message
+
+    if (this.machineForm.invalid || !this.selectedFile) {
+      console.error('Form is invalid or image is missing');
       return;
     }
   
@@ -71,6 +78,10 @@ export class AddmachinemodalComponent {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
+    }
+    //if file has name
+    if (this.selectedFile?.name) {
+      this.selectedFileName = this.selectedFile.name;
     }
   }
 
