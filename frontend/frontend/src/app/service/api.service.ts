@@ -166,6 +166,20 @@ export class ApiService {
     return await response.json() ?? undefined;
   }
 
+  async deleteMachine(id: number) {
+    const url = this.baseUrl + `/api/gyms/machine?id=${id}`;
+    const headers = this.getHeaders(true);
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers,
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete machine');
+    }
+  }
+
   async sendMachineStatus(data: any) {
     //console.log('Data to send:', data);
   

@@ -13,7 +13,7 @@ export class LoginComponent {
 
   onButtonClick() {
 
-    const url = 'https://eu-north-1awjrvvgms.auth.eu-north-1.amazoncognito.com/login?client_id=517pno0eree438agq70vt50bvo&response_type=code&scope=email+openid+phone&redirect_uri=http://localhost:4200/callback';
+    const url = 'https://eu-north-1awjrvvgms.auth.eu-north-1.amazoncognito.com/login?client_id=517pno0eree438agq70vt50bvo&response_type=code&scope=email+openid+phone&redirect_uri=https://es-ua.ddns.net/callback';
 
     // Redirect to the login page
     window.location.assign(url);
